@@ -867,8 +867,8 @@
 
 
         {{ HTML::script(Theme::asset('js/jquery.min.js')) }}
-        {{ HTML::script(Theme::asset('js/bootstrap.min.js')) }}
         {{ HTML::script(Theme::asset('js/jquery-ui.min.js')) }}
+        {{ HTML::script(Theme::asset('js/bootstrap.min.js')) }}
         <!-- Morris.js charts -->
         {{ HTML::script(Theme::asset('js/raphael-min.js')) }}
         {{ HTML::script(Theme::asset('js/plugins/morris/morris.min.js')) }}

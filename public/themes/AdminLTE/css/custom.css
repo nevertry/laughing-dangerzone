@@ -49,7 +49,7 @@
 }
 .skin-grue .user-panel > .info,
 .skin-grue .user-panel > .info > a {
-  color: #555555;
+  color: #FFFFFF;
 }
 /* skin-grue sidebar */
 .skin-grue .sidebar {
@@ -147,4 +147,9 @@
   border-top-right-radius: 2px !important;
   border-bottom-right-radius: 2px !important;
   border-bottom-left-radius: 0 !important;
+}
+
+/* Skin Plus */
+.fa.fa-circle {
+  color: #85C34A;
 }
