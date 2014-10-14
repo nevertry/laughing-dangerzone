@@ -19,6 +19,8 @@
         {{ HTML::style(Theme::asset('css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')) }}
         <!-- Theme style -->
         {{ HTML::style(Theme::asset('css/AdminLTE.css')) }}
+        <!-- Custom Theme style -->
+        {{ HTML::style(Theme::asset('css/custom.css')) }}
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -27,12 +29,12 @@
           <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
     </head>
-    <body class="skin-blue">
+    <body class="skin-grue">
         <!-- header logo: style can be found in header.less -->
         <header class="header">
             <a href="index.html" class="logo">
                 <!-- Add the class icon to your logo image or logo icon to add the margining -->
-                AdminLTE
+                <img src="/assets/img/logoteks-hor.png" />
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
@@ -893,7 +895,7 @@
         {{ HTML::script(Theme::asset('js/AdminLTE/dashboard.js')) }}
 
         <!-- AdminLTE for demo purposes -->
-        {{ HTML::script(Theme::asset('js/AdminLTE/demo.js')) }}
+        <!-- {{ HTML::script(Theme::asset('js/AdminLTE/demo.js')) }} -->
 
     </body>
 </html>
