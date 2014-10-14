@@ -22,6 +22,10 @@ App::after(function($request, $response)
 	//
 });
 
+Route::filter('backend', function() {
+    Theme::init('AdminLTE');
+});
+
 /*
 |--------------------------------------------------------------------------
 | Authentication Filters

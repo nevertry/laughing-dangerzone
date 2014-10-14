@@ -15,3 +15,9 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+
+Route::group(['prefix' => 'dashboard', 'before' => 'backend'], function () {
+
+	Route::get('/', ['uses' => 'DashboardController@index']);
+
+});
