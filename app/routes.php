@@ -24,7 +24,10 @@ Route::group(['prefix' => 'dashboard', 'before' => 'theme.backend|auth.sentry'],
 
 Route::group(array('before' => 'theme.backend'), function()
 {
-	Route::get('/', function(){
-		return Redirect::to('signin');
-	});
+	Route::get('signin', 'UserController@getSignIn');
+
+	Route::post('signin', 'UserController@postSignIn');
+
+	Route::get('signout', 'UserController@getSignOut');
 });
+

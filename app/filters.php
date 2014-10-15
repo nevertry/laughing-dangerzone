@@ -54,10 +54,9 @@ Route::filter('auth.basic', function()
 	return Auth::basic();
 });
 
-
 Route::filter('auth.sentry', function()
 {
-	if ( ! Sentry::check()) return Redirect::guest('signin');
+	if ( ! Sentry::check()) return Redirect::to('signin');
 });
 
 /*
@@ -103,5 +102,5 @@ Route::filter('csrf', function()
 */
 
 Route::filter('theme.backend', function() {
-    Theme::init('AdminLTE');
+    Theme::init('admin');
 });
