@@ -22,10 +22,6 @@ App::after(function($request, $response)
 	//
 });
 
-Route::filter('backend', function() {
-    Theme::init('AdminLTE');
-});
-
 /*
 |--------------------------------------------------------------------------
 | Authentication Filters
@@ -56,6 +52,12 @@ Route::filter('auth', function()
 Route::filter('auth.basic', function()
 {
 	return Auth::basic();
+});
+
+
+Route::filter('auth.sentry', function()
+{
+	if ( ! Sentry::check()) return Redirect::guest('signin');
 });
 
 /*
@@ -91,4 +93,15 @@ Route::filter('csrf', function()
 	{
 		throw new Illuminate\Session\TokenMismatchException;
 	}
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| Theme Filter
+|--------------------------------------------------------------------------
+*/
+
+Route::filter('theme.backend', function() {
+    Theme::init('AdminLTE');
 });

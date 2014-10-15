@@ -11,13 +11,20 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+// Route::get('/', function()
+// {
+// 	return View::make('hello');
+// });
 
-Route::group(['prefix' => 'dashboard', 'before' => 'backend'], function () {
+Route::group(['prefix' => 'dashboard', 'before' => 'theme.backend|auth.sentry'], function () {
 
 	Route::get('/', ['uses' => 'DashboardController@index']);
 
+});
+
+Route::group(array('before' => 'theme.backend'), function()
+{
+	Route::get('/', function(){
+		return Redirect::to('signin');
+	});
 });
