@@ -11,10 +11,10 @@
 |
 */
 
-// Route::get('/', function()
-// {
-// 	return View::make('hello');
-// });
+Route::get('/', function()
+{
+	return Redirect::to('dashboard');
+});
 
 Route::group(['prefix' => 'dashboard', 'before' => 'theme.backend|auth.sentry'], function () {
 

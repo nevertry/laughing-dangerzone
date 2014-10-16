@@ -1,7 +1,12 @@
 <?php
 
+use AirMinum\Storage\User\UserRepository as User;
+ 
 class UserController extends \BaseController {
 
+	public function __construct(User $user) {
+		$this->user = $user;
+	}
 
 	/**
 	 * undocumented function
@@ -49,22 +54,22 @@ class UserController extends \BaseController {
 			{
 				if(Input::get('remember_me') == '1')
 				{
-					$user = Sentry::authenticateAndRemember($credentials);
+					$this->user = Sentry::authenticateAndRemember($credentials);
 				}
 				else
 				{
-					$user = Sentry::authenticate($credentials);
+					$this->user = Sentry::authenticate($credentials);
 				}
 
-				if ($user)
+				if ($this->user)
 				{
 					try
 					{
-						$throttle = Sentry::findThrottlerByUserId($user->id);
+						$throttle = Sentry::findThrottlerByUserId($this->user->id);
 						$throttle->clearLoginAttempts();
 
-						$user->submit_reset_password_at = null;
-						$user->save();
+						// $user->submit_reset_password_at = null;
+						// $user->save();
 
 						$redirect = Session::get('intendedUrl');
 
@@ -142,7 +147,7 @@ class UserController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		return $this->user->all();
 	}
 
 

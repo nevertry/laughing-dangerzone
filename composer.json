@@ -6,7 +6,8 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"cartalyst/sentry": "2.1.*",
-		"bigecko/laravel-theme": "dev-master"
+		"bigecko/laravel-theme": "dev-master",
+		"barryvdh/laravel-debugbar": "1.*"
 	},
 	"autoload": {
 		"classmap": [
@@ -15,7 +16,8 @@
 			"app/models",
 			"app/database/migrations",
 			"app/database/seeds",
-			"app/tests/TestCase.php"
+			"app/tests/TestCase.php",
+			"app/AirMinum"
 		]
 	},
 	"scripts": {

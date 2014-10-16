@@ -121,8 +121,15 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
+
+		// Packages
 		'Cartalyst\Sentry\SentryServiceProvider',
 		'Bigecko\LaravelTheme\LaravelThemeServiceProvider',
+		// 'Barryvdh\Debugbar\ServiceProvider',
+
+		// Custom Packages
+		'AirMinum\Storage\StorageServiceProvider',
+		// 'AirMinum\Composer\ComposerServiceProvider',
 
 	),
 
