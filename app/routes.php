@@ -11,14 +11,20 @@
 |
 */
 
+// Query Debug
+// Event::listen('illuminate.query', function($query){
+// 	var_dump($query);
+// });
+
 Route::get('/', function()
 {
 	return Redirect::to('dashboard');
-});
+}
+);
 
 Route::group(['prefix' => 'dashboard', 'before' => 'theme.backend|auth.sentry'], function () {
 
-	Route::get('/', ['uses' => 'DashboardController@index']);
+	Route::get('/', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
 
 });
 

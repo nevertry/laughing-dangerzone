@@ -96,32 +96,32 @@ class UserController extends \BaseController {
 				// Notify generated password token
 				return Redirect::to('signin')->withErrors(array('login' => $e->getMessage()))->withInput();
 			}
-			catch (\Cartalyst\Sentry\Users\WrongPasswordException $e)
-			{
-				// return Redirect::to('signin')->withErrors(array('login' => $e->getMessage()))->withInput();
-				return Redirect::to('signin')->withErrors(array('login' => Lang::get('validation.same')))->withInput();
-			}
-			catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
-			{
-				return Redirect::to('signin')->withErrors(array('login' => $e->getMessage()));
-			}
-			catch (\Cartalyst\Sentry\Users\UserNotActivatedException $e)
-			{
-				return Redirect::to('signin')->withErrors(array('login' => $e->getMessage()));
-			}
-			catch (\Cartalyst\Sentry\Throttling\UserSuspendedException $e)
-			{
-				$throttle = Sentry::findThrottlerByUserLogin(Input::get('email'));
-				$time = $throttle->getSuspensionTime();
-				return Redirect::to('signin')->withErrors(array('status_error' => "User is suspended for $time minutes."));
-			}
-			catch (\Cartalyst\Sentry\Throttling\UserBannedException $e)
-			{
-				return Redirect::to('signin')->withErrors(array('login' => $e->getMessage()));
-			}
+			// catch (\Cartalyst\Sentry\Users\WrongPasswordException $e)
+			// {
+			// 	// return Redirect::to('signin')->withErrors(array('login' => $e->getMessage()))->withInput();
+			// 	return Redirect::to('signin')->withErrors(array('login' => Lang::get('validation.same')))->withInput();
+			// }
+			// catch (\Cartalyst\Sentry\Users\UserNotFoundException $e)
+			// {
+			// 	return Redirect::to('signin')->withErrors(array('login' => $e->getMessage()));
+			// }
+			// catch (\Cartalyst\Sentry\Users\UserNotActivatedException $e)
+			// {
+			// 	return Redirect::to('signin')->withErrors(array('login' => $e->getMessage()));
+			// }
+			// catch (\Cartalyst\Sentry\Throttling\UserSuspendedException $e)
+			// {
+			// 	$throttle = Sentry::findThrottlerByUserLogin(Input::get('email'));
+			// 	$time = $throttle->getSuspensionTime();
+			// 	return Redirect::to('signin')->withErrors(array('login' => "User is suspended for $time minutes."));
+			// }
+			// catch (\Cartalyst\Sentry\Throttling\UserBannedException $e)
+			// {
+			// 	return Redirect::to('signin')->withErrors(array('login' => $e->getMessage()));
+			// }
 			catch(\Exception $e)
 			{
-				return Redirect::to('signin')->withErrors(array('login' => $e->getMessage()));
+				return Redirect::to('signin')->withErrors(array('login' => Lang::get('validation.in', ['attribute' => 'id/password'])));
 			}
 		}
 	}

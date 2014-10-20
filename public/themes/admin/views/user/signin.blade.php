@@ -6,35 +6,26 @@
             <div class="header">{{ Lang::get('captions.user.sign_in') }}</div>
             {{ Form::open(array('url' => 'signin', 'method' => 'post')) }}
                 <div class="body bg-gray">
-    @if ( $errors->count() > 0 )
-      <ul>
-        @foreach( $errors->all() as $message )
-          <li>{{ $message }}</li>
-        @endforeach
-      </ul>
-    @endif
+                    @include('partials.error')
+
                     <div class="form-group">
-                        <input type="text" name="email" class="form-control" placeholder="{{ Lang::get('captions.user.user_id') }}" autofocus value="{{ Input::old('email') }}"/>
+                        {{ Form::text('email', Input::old('email'), ['class' => 'form-control', 'placeholder' => Lang::get('captions.user.user_id'), 'autofocus']) }}
                     </div>
                     <div class="form-group">
-                        <input type="password" name="password" class="form-control" placeholder="{{ Lang::get('captions.user.password') }}"/>
+                        {{ Form::password('password', ['class' => 'form-control', 'placeholder' => Lang::get('captions.user.password')]) }}
                     </div>          
                     <div class="form-group">
-                        <input type="checkbox" name="remember_me"/> {{ Lang::get('captions.user.remember') }}
+                        {{ Form::checkbox('remember_me', 'value') }} {{ Lang::get('captions.user.remember') }}
                     </div>
                 </div>
                 <div class="footer">
-                    <button type="submit" class="btn bg-olive btn-block">{{ Lang::get('captions.user.sign_in_btn') }}</button>
+                    {{ Form::submit(Lang::get('captions.user.sign_in_btn'), ['class' => 'btn bg-olive btn-block']) }}
 <!-- 
                     <p>{{ HTML::link('reset-password', Lang::get('captions.user.forgot_link')) }}</p>
-
                     <a href="#" class="text-center">{{ Lang::get('captions.user.register_link') }}</a> -->
                 </div>
             {{ Form::close() }}
 <!-- 
-
-
-
              <div class="margin text-center">
                 <span>Sign in using social networks</span>
                 <br/>

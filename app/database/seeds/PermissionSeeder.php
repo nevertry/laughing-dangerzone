@@ -9,28 +9,43 @@ class PermissionSeeder extends Seeder {
 	 */
 	public function run()
 	{
+		DB::table('permissions')->truncate();
+
 		$permissions_groups = array(
 			// Dashboard
 			'dashboard' => array(
 				'dashboard'
 				),
 
-			// Users
-			'user' => array(
+			// Pengguna
+			'pengguna' => array(
 				'user',
-				'user.create',
-				'user.view',
-				'user.edit',
-				'user.delete'
 				),
 
 			// Groups
 			'group' => array(
 				'group',
-				'group.create',
-				'group.view',
-				'group.edit',
-				'group.delete'
+				),
+
+			// Menus
+			'menu' => array(
+				// Menus : tidak perlu
+				//'menu',
+
+				// Master Data
+				'menu.Masterdata',
+
+				// Akuntansi
+				'menu.Akuntansi',
+
+				// Pengguna
+				'menu.Pengguna',
+				'menu.SubPenggunaProfile',
+				'menu.SubPenggunaList',
+				'menu.SubPenggunaGroup',
+
+				// Pengaturan
+				'menu.Pengaturan',
 				)
 			);
 

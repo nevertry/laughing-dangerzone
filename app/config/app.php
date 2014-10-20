@@ -129,7 +129,7 @@ return array(
 
 		// Custom Packages
 		'AirMinum\Storage\StorageServiceProvider',
-		// 'AirMinum\Composer\ComposerServiceProvider',
+		'AirMinum\Composer\ComposerServiceProvider',
 
 	),
 

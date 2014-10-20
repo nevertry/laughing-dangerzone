@@ -23,3 +23,15 @@ Documentation for the entire framework can be found on the [Laravel website](htt
 ### License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+
+## This app
+
+This app description
+
+### Pre-requisite
+
+Sentry for user access. Migration
+php artisan migrate --package=cartalyst/sentry
+
+After installing, you can publish the package configuration file into your application by running the following command:
+php artisan config:publish cartalyst/sentry

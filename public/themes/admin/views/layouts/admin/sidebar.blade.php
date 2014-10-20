@@ -7,22 +7,24 @@
                             <img src="{{ Theme::asset('img/avatar3.png') }}" class="img-circle" alt="User Image" />
                         </div>
                         <div class="pull-left info">
-                            <p>Hello, Jane</p>
+                            <p>Hello, Admin</p>
 
-                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+<!--                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a> -->
                         </div>
                     </div>
                     <!-- search form -->
-                    <form action="#" method="get" class="sidebar-form">
+<!--                     <form action="#" method="get" class="sidebar-form">
                         <div class="input-group">
                             <input type="text" name="q" class="form-control" placeholder="Search..."/>
                             <span class="input-group-btn">
                                 <button type='submit' name='seach' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
                             </span>
                         </div>
-                    </form>
+                    </form> -->
                     <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
+                    @include('partials.sidemenu')
+
                     <ul class="sidebar-menu">
                         <li class="active">
                             <a href="index.html">
@@ -109,6 +111,7 @@
                             </ul>
                         </li>
                     </ul>
+
                 </section>
                 <!-- /.sidebar -->
             </aside>
