@@ -24,7 +24,7 @@
                     <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     @include('partials.sidemenu')
-
+<!--
                     <ul class="sidebar-menu">
                         <li class="active">
                             <a href="index.html">
@@ -111,7 +111,7 @@
                             </ul>
                         </li>
                     </ul>
-
+-->
                 </section>
                 <!-- /.sidebar -->
             </aside>
