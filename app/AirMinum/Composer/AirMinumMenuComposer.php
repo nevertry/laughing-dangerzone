@@ -2,12 +2,6 @@
 
 class AirMinumMenuComposer {
 
-	public function __construct (\AirMinum\Storage\User\UserRepository $user)
-	{
-		$this->user = $user;
-		// $this->permission = \Permissions::all();
-	}
-
 	/**
 	 * undocumented function
 	 *
@@ -18,8 +12,9 @@ class AirMinumMenuComposer {
 	{
 		// pull from cache later?
 		$menus = ['1','2','3'];
+		$userdata = 'static';
 
-		$view->with('menus', $menus);
+		$view->with('menus', $menus)->with('userdata', $userdata);
 	}
 
 	/**

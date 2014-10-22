@@ -7,6 +7,7 @@
         </a>
     </li>
     <!--
+{{ $userdata }}
 {{ print_r($menus, true) }}
     -->
     <li class="active">

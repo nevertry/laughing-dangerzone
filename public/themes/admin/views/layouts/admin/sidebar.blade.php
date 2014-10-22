@@ -8,7 +8,7 @@
                         </div>
                         <div class="pull-left info">
                             <p>Hello, Admin</p>
-                            {{ $userdata }}
+                            {{-- $userdata --}}<!-- composer pass test -->
 
 <!--                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a> -->
                         </div>
