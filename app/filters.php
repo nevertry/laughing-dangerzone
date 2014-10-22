@@ -104,3 +104,15 @@ Route::filter('csrf', function()
 Route::filter('theme.backend', function() {
     Theme::init('admin');
 });
+
+
+/*
+|--------------------------------------------------------------------------
+| View Composer
+|--------------------------------------------------------------------------
+*/
+
+// View::composer('layouts.default', function($view)
+// {
+//   $view->with('title', 'Air Minum Terpadu');
+// });

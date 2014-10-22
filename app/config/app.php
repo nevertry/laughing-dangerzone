@@ -128,8 +128,7 @@ return array(
 		// 'Barryvdh\Debugbar\ServiceProvider',
 
 		// Custom Packages
-		'AirMinum\Storage\StorageServiceProvider',
-		'AirMinum\Composer\ComposerServiceProvider',
+		'AirMinum\Composer\ComposerServiceProvider'
 
 	),
 

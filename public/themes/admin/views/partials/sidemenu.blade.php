@@ -6,6 +6,16 @@
             <span>Dashboard</span>
         </a>
     </li>
+    <!--
+{{ print_r($menus, true) }}
+    -->
+    <li class="active">
+        <a href="#">
+            <i class="fa fa-home"></i>
+            <span>I Have Permission</span>
+        </a>
+    </li>
+    
 
     <li class="treeview">
         <a href="#">

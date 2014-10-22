@@ -25,6 +25,7 @@ Route::get('/', function()
 Route::group(['prefix' => 'dashboard', 'before' => 'theme.backend|auth.sentry'], function () {
 
 	Route::get('/', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
+	Route::get('user', ['as' => 'user', 'uses' => 'DashboardController@showUserPermissions']);
 
 });
 
