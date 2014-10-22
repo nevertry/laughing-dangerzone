@@ -12,6 +12,7 @@ class UserAncestorSeeder extends Seeder {
 		DB::table('users')->truncate();
 		DB::table('throttle')->truncate();
 		DB::table('users_groups')->truncate();
+		DB::table('groups')->truncate();
 
 		$user_data = array(
 			'email'       => 'admin@admin.com',

@@ -11,38 +11,32 @@ class PermissionSeeder extends Seeder {
 	{
 		DB::table('permissions')->truncate();
 
-/*
-masterdata	
-masterdata.unit	masterdata.unit.crud
-masterdata.pekerjaan	masterdata.pekerjaan.crud
-masterdata.peralatan	masterdata.peralatan.crud
-*/
-
 		$permissions_groups = [
 			// Master Data
 			'masterdata' => [
+				'masterdata',
 				'masterdata.unit',
-				'masterdata.pekerjaan',
-				'masterdata.peralatan',
-				// CRUD
 				'masterdata.unit.crud',
+				'masterdata.pekerjaan',
 				'masterdata.pekerjaan.crud',
+				'masterdata.peralatan',
 				'masterdata.peralatan.crud'
 				],
 
 			// Tarif
 			'tarif' => [
+				'tarif',
 				'tarif.sk',
-				'tarif.jenis',
-				'tarif.peruntukan',
-				// CRUD
 				'tarif.sk.crud',
+				'tarif.jenis',
 				'tarif.jenis.crud',
+				'tarif.peruntukan',
 				'tarif.peruntukan.crud'
 				],
 
 			// Akuntansi
 			'akuntansi' => [
+				'akuntansi',
 				// CoA
 				'akuntansi.akun',
 				'akuntansi.akun.crud',
@@ -53,40 +47,42 @@ masterdata.peralatan	masterdata.peralatan.crud
 
 			// Pelanggan
 			'pelanggan' => [
+				'pelanggan',
+				'pelanggan.crud',
 				'pelanggan.lihat',
 				'pelanggan.lihat.semua',
 				'pelanggan.lihat.calon',
 				'pelanggan.lihat.teguran',
 				'pelanggan.lihat.nonaktif',
 				'pelanggan.lihat.dicabut',
-				// CRUD
-				'pelanggan.crud',
 				// Atur Tagihan / Kasir
 				'pelanggan.tagihan'
 			],
 
 			// Tagihan
 			'tagihan' => [
+				'tagihan',
 				'tagihan.bulanan',
-				'tagihan.rab',
-				// CRUD
 				'tagihan.bulanan.crud',
+				'tagihan.rab',
 				'tagihan.rab.crud'
 			],
 
 			// Catat Meter
 			'catatmeter' => [
+				'catatmeter',
+				'catatmeter.crud',
 				'catatmeter.tambah'
 			],
 
 			// Pengguna
 			'pengguna' => [
+				'pengguna',
 				'pengguna.profil',
 				'pengguna.id',
-				'pengguna.grup',
-				// CRUD
 				'pengguna.id.crud',
-				'pengguna.grup.crud',
+				'pengguna.grup',
+				'pengguna.grup.crud'
 			]
 			];
 
