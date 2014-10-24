@@ -128,7 +128,7 @@ class UserController extends \BaseController {
 	 **/
 	public function getSignOut()
 	{
-		Sentry::logout();
+		User::getOut(); // Sentry::logout();
 		Session::flush();
 		Session::flash('status', Lang::get('captions.user.sign_out'));
 		return Redirect::to('signin');

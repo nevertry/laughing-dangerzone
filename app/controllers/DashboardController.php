@@ -20,7 +20,6 @@ class DashboardController extends \BaseController {
 	 **/
 	public function showUserPermissions()
 	{
-		$userdata = User::getPermissions();
-		return View::make('dashboard.index')->with('userdata', $userdata);
+		return View::make('dashboard.index');
 	}
 }

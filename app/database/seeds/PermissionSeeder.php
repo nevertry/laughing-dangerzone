@@ -55,7 +55,9 @@ class PermissionSeeder extends Seeder {
 				'pelanggan.lihat.teguran',
 				'pelanggan.lihat.nonaktif',
 				'pelanggan.lihat.dicabut',
-				// Atur Tagihan / Kasir
+				'pelanggan.pengaduan',
+
+				// Fungsional; Atur Tagihan / Kasir
 				'pelanggan.tagihan'
 			],
 
@@ -83,6 +85,13 @@ class PermissionSeeder extends Seeder {
 				'pengguna.id.crud',
 				'pengguna.grup',
 				'pengguna.grup.crud'
+			],
+
+			// Pengaturan
+			'pengaturan' => [
+				'pengaturan',
+				'pengaturan.aplikasi',
+				'pengaturan.laporan'
 			]
 			];
 

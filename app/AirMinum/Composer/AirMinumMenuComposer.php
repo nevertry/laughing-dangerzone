@@ -1,5 +1,7 @@
 <?php namespace AirMinum\Composer;
 
+use User;
+
 class AirMinumMenuComposer {
 
 	/**
@@ -10,33 +12,9 @@ class AirMinumMenuComposer {
 	 **/
 	public function compose($view)
 	{
-		// pull from cache later?
-		$menus = ['1','2','3'];
-		$userdata = 'static';
+		// Set static page info
+		$pageinfo = array('title' => 'Simpadu 2014');
 
-		$view->with('menus', $menus)->with('userdata', $userdata);
+		$view->with('pageinfo', $pageinfo);
 	}
-
-	/**
-	 * undocumented function
-	 *
-	 * @return void
-	 * @author 
-	 **/
-	private function getSystemPermissions()
-	{
-		return $this->permission->toArray();
-	}
-
-	/**
-	 * undocumented function
-	 *
-	 * @return void
-	 * @author 
-	 **/
-	private function getUserPermissions()
-	{
-		return $this->user->getPermissions();
-	}
-
 }

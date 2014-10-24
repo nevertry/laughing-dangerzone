@@ -7,17 +7,9 @@
         </a>
     </li>
     <!--
-{{ $userdata }}
-{{ print_r($menus, true) }}
+{{ $pageinfo['title'] }}
     -->
-    <li class="active">
-        <a href="#">
-            <i class="fa fa-home"></i>
-            <span>I Have Permission</span>
-        </a>
-    </li>
-    
-
+    @if (has_permission('masterdata'))
     <li class="treeview">
         <a href="#">
             <i class="fa fa-table"></i>
@@ -26,12 +18,20 @@
         </a>                            
 
         <ul class="treeview-menu">
+            @if (has_permission('masterdata.unit'))
             <li><a href="#Master-Unit-Wilayah"><i class="fa fa-angle-double-right"></i> <span>Unit/Wilayah</span></a></li>
+            @endif
+            @if (has_permission('masterdata.pekerjaan'))
             <li><a href="#Master-Pekerjaan"><i class="fa fa-angle-double-right"></i> <span>Pekerjaan</span></a></li>
+            @endif
+            @if (has_permission('masterdata.peralatan'))
             <li><a href="#Master-Peralatan"><i class="fa fa-angle-double-right"></i> <span>Peralatan</span></a></li>
+            @endif
         </ul>
     </li>
+    @endif
 
+    @if (has_permission('tarif'))
     <li class="treeview">
         <a href="#">
             <i class="fa fa-money"></i>
@@ -40,13 +40,20 @@
         </a>
 
         <ul class="treeview-menu">
+            @if (has_permission('tarif.sk'))
             <li><a href="#Tarif-SK"><i class="fa fa-angle-double-right"></i> <span>SK Tarif</span></a></li>
+            @endif
+            @if (has_permission('tarif.jenis'))
             <li><a href="#Tarif-Jenis"><i class="fa fa-angle-double-right"></i> <span>Jenis Tarif</span></a></li>
+            @endif
+            @if (has_permission('tarif.peruntukan'))
             <li><a href="#Tarif-Peruntukan"><i class="fa fa-angle-double-right"></i> <span>Peruntukan</span></a></li>
+            @endif
         </ul>
     </li>
+    @endif
 
-
+    @if (has_permission('akuntansi'))
     <li class="treeview">
         <a href="#">
             <i class="fa fa-book"></i>
@@ -55,6 +62,7 @@
         </a>                            
 
         <ul class="treeview-menu">
+            @if (has_permission('akuntansi'))
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-angle-double-right"></i>
@@ -62,6 +70,7 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
 
+                @if (has_permission('akuntansi.akun'))
                 <ul class="treeview-menu">
                     <li><a href="#CoA"><i class="fa fa-angle-right"></i> <span>Semua</span></a></li>
                     <li><a href="#Aset-Lancar"><i class="fa fa-angle-right"></i> <span>Aset Lancar</span></a></li>
@@ -72,7 +81,11 @@
                     <li><a href="#Pendapatan"><i class="fa fa-angle-right"></i> <span>Pendapatan</span></a></li>
                     <li><a href="#Beban-Operasional"><i class="fa fa-angle-right"></i> <span>Beban Operasional</span></a></li>
                 </ul>
+                @endif
             </li>
+            @endif
+
+            @if (has_permission('akuntansi.jurnal'))
             <li class="treeview">
                 <a href="#Jurnal">
                     <i class="fa fa-angle-double-right"></i>
@@ -84,10 +97,13 @@
                     <li><a href="#Daftar-Jurnal"><i class="fa fa-angle-right"></i> <span>Daftar Jurnal</span></a></li>
                 </ul>
             </li>
+            @endif
 
         </ul>
     </li>
+    @endif
 
+    @if (has_permission('pelanggan'))
     <li class="treeview">
         <a href="#">
             <i class="fa fa-male"></i> <span>Pelanggan</span>
@@ -118,7 +134,9 @@
             </li>
         </ul>
     </li>
+    @endif
 
+    @if (has_permission('tagihan'))
     <li class="treeview">
         <a href="#">
             <i class="fa fa-credit-card">
@@ -130,7 +148,9 @@
             <li><a href="#Tagihan-RAB"><i class="fa fa-angle-double-right"></i> <span>Tagihan RAB</span></a></li>
         </ul>
     </li>
+    @endif
 
+    @if (has_permission('catatmeter'))
     <li class="treeview">
         <a href="#">
             <i class="fa fa-dashboard"></i>
@@ -141,7 +161,9 @@
             <li><a href="#Daftar-Pencatatan"><i class="fa fa-angle-double-right"></i> <span>Tambah Catat Meter</span></a></li>
         </ul>
     </li>
+    @endif
 
+    @if (has_permission('pengguna'))
     <li class="treeview">
         <a href="#">
             <i class="fa fa-users"></i>
@@ -154,7 +176,9 @@
             <li><a href="#Daftar-Grup"><i class="fa fa-angle-double-right"></i> <span>Daftar Grup</span></a></li>
         </ul>
     </li>
+    @endif
 
+    @if (has_permission('tarif'))
     <li class="treeview">
         <a href="#">
             <i class="fa fa-gears"></i>
@@ -166,4 +190,5 @@
             <li><a href="#Laporan"><i class="fa fa-angle-double-right"></i> <span>Laporan<span></a></li>
         </ul>
     </li>
+    @endif
 </ul>

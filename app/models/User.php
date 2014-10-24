@@ -10,6 +10,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	use UserTrait, RemindableTrait;
 	protected $softDelete = true;
 
+    /**
+     * Name of Cache
+     * @var array
+     */
+	public static $cache_prefix = 'Bendungan.';
+
 	/**
 	 * The database table used by the model.
 	 *
@@ -32,14 +38,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 **/
 	static private function getPermissionCache($user)
 	{
-		$key = md5('Bendungan.'.$user->id);
+		$key = self::getCacheName($user->id);
 
 		if(Cache::has($key))
 		{
-			echo json_encode('dari cache');
+			// echo json_encode('dari cache');
 			return Cache::get($key);
 		}
-		echo json_encode('BUKAN dari cache');
+		// echo json_encode('BUKAN dari cache');
 		return self::setPermissionCache($user, $key);
 	}
 
@@ -56,7 +62,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		$group_permission = $group->getPermissions();
 
 		// update cache
-		Cache::rememberForever($key, $group_permission);
+		Cache::add($key, $group_permission, 30);
 
 		return $group_permission;
 	}
@@ -75,4 +81,34 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return self::getPermissionCache($user);
 	}
 
+	/**
+	 * User Logout
+	 *
+	 * @return void
+	 * @author 
+	 **/
+	static public function getOut()
+	{
+		$user = Sentry::getUser();
+
+		// delete cache from user
+		if ($user)
+		{
+			Cache::forget(self::getCacheName($user->id));
+		}
+		Sentry::logout();
+
+		return true;
+	}
+
+	/**
+	 * undocumented function
+	 *
+	 * @return void
+	 * @author 
+	 **/
+	static private function getCacheName ($uid)
+	{
+		return md5(self::$cache_prefix.$uid);
+	}
 }

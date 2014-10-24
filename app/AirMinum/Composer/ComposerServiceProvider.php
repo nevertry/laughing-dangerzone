@@ -6,6 +6,6 @@ class ComposerServiceProvider extends ServiceProvider {
 	
 	public function register()
 	{
-		$this->app->view->composer('partials.sidemenu', 'AirMinum\Composer\AirMinumMenuComposer');
+		$this->app->view->composer('layouts.default', 'AirMinum\Composer\AirMinumMenuComposer');
 	}
 }
