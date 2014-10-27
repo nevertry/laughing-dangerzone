@@ -2,7 +2,15 @@
 
 class SettingController extends \BaseController {
 
-	private static $pageinfo = ['menu' => ['pengaturan']];
+	private static $pageinfo = [
+		'menu' => [
+			'pengaturan'
+			],
+		'content' => [
+			'title' => 'Pengaturan',
+			'subtitle' => 'Pengaturan Aplikasi'
+		]
+	];
 
 	/**
 	 * undocumented function

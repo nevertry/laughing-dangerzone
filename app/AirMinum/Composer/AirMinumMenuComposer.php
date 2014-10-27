@@ -22,6 +22,11 @@ class AirMinumMenuComposer {
 		$menu_default = ['dashboard'];
 		$pageinfo['menu'] = (!empty($viewdata['pageinfo']['menu'])) ? $viewdata['pageinfo']['menu'] : $menu_default;
 
+		$content_default = [
+			'title' => 'Dashboard',
+			'subtitle' => 'Control Panel'];
+		$pageinfo['content'] = (!empty($viewdata['pageinfo']['content'])) ? $viewdata['pageinfo']['content'] : $content_default;
+
 		$view->with('pageinfo', $pageinfo);
 	}
 
