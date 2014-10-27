@@ -2,6 +2,19 @@
 
 class DashboardController extends \BaseController {
 
+	private static $pageinfo = ['menu' => ['dashboard']];
+
+	/**
+	 * undocumented function
+	 *
+	 * @return void
+	 * @author 
+	 **/
+	public function __construct ()
+	{
+		// self::$pageinfo = ['menu'=>['dashboard']];
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -9,7 +22,7 @@ class DashboardController extends \BaseController {
 	 */
 	public function index()
 	{
-		return View::make('dashboard.index');
+		return View::make('pages.dashboard')->with('pageinfo', self::$pageinfo);
 	}
 
 	/**
@@ -20,6 +33,6 @@ class DashboardController extends \BaseController {
 	 **/
 	public function showUserPermissions()
 	{
-		return View::make('dashboard.index');
+		return View::make('pages.dashboard')->with('pageinfo', self::$pageinfo);
 	}
 }

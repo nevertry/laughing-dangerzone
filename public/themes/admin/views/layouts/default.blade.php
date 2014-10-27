@@ -37,11 +37,16 @@
             @include('layouts.admin.sidebar')
 
             <!-- Right side column. Contains the navbar and content of the page -->
-            @yield('content', 'No content.')
+            <aside class="right-side">
+                <!-- Content Header (Page header) -->
+                @include('partials.content_header')
+
+                <!-- Main content -->
+                @yield('content', 'No content.')
+            </aside><!-- /.right-side -->
         </div><!-- ./wrapper -->
 
         <!-- add new calendar event modal -->
-
 
         {{ HTML::script(Theme::asset('js/jquery.min.js')) }}
         {{ HTML::script(Theme::asset('js/jquery-ui.min.js')) }}

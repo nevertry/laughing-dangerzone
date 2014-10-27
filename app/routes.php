@@ -23,10 +23,17 @@ Route::get('/', function()
 );
 
 Route::group(['prefix' => 'dashboard', 'before' => 'theme.backend|auth.sentry'], function () {
-
+	// Dashboard/Home
 	Route::get('/', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
-	Route::get('user', ['as' => 'user', 'uses' => 'DashboardController@showUserPermissions']);
 
+	// SettingController
+	Route::group(['prefix' => 'pengaturan'], function () {
+		Route::get('aplikasi', ['as' => 'pengaturan.aplikasi', 'uses' => 'SettingController@showAplikasi']);
+		Route::get('laporan', ['as' => 'pengaturan.laporan', 'uses' => 'SettingController@showLaporan']);
+	});
+
+	// debug
+	Route::get('user', ['as' => 'user', 'uses' => 'DashboardController@showUserPermissions']);
 });
 
 Route::group(array('before' => 'theme.backend'), function()

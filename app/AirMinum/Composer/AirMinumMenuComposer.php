@@ -12,9 +12,17 @@ class AirMinumMenuComposer {
 	 **/
 	public function compose($view)
 	{
-		// Set static page info
-		$pageinfo = array('title' => 'Simpadu 2014');
+		// retrieve data passed to view
+		$viewdata = $view->getData();
+
+		// Default pageinfo
+		// $pageinfo_default = User::getPermissions();
+
+		// Default Menu
+		$menu_default = ['dashboard'];
+		$pageinfo['menu'] = (!empty($viewdata['pageinfo']['menu'])) ? $viewdata['pageinfo']['menu'] : $menu_default;
 
 		$view->with('pageinfo', $pageinfo);
 	}
+
 }
