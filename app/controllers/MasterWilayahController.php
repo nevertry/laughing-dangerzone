@@ -2,6 +2,16 @@
 
 class MasterWilayahController extends \BaseController {
 
+	private static $pageinfo = [
+		'menu' => [
+			'masterdata'
+			],
+		'content' => [
+			'title' => 'Master Data',
+			'subtitle' => 'Unit/Wilayah'
+		]
+	];
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -9,6 +19,7 @@ class MasterWilayahController extends \BaseController {
 	 */
 	public function index()
 	{
+		
 		//
 	}
 

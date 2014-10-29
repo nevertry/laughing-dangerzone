@@ -20,7 +20,6 @@ class SettingController extends \BaseController {
 	 **/
 	public function __construct ()
 	{
-		// self::$pageinfo = ['menu'=>['pengaturan']];
 	}
 
 	/**
@@ -54,14 +53,14 @@ class SettingController extends \BaseController {
 	 **/
 	public function showAplikasi()
 	{
-		$data = array(
-			'groups' => Group::all(),
-			'settings' => Setting::all()
-			);
+		$setting_val = Setting::where('name', '=', 'aplikasi');
 
-		self::add_menu('pengaturan.aplikasi');
+		self::$pageinfo['menu'] = add_to_array(['pengaturan.aplikasi'], self::$pageinfo['menu']);
 
-		return View::make('pages.setting')->with('pageinfo', self::$pageinfo);
+		return View::make('pages.setting_aplikasi', [
+			'pageinfo' => self::$pageinfo,
+			'settings' => $setting_aplikasi,
+		]);
 	}
 
 	/**
@@ -72,8 +71,11 @@ class SettingController extends \BaseController {
 	 **/
 	public function showLaporan()
 	{
-		self::add_menu('pengaturan.laporan');
+		self::$pageinfo['menu'] = array_merge(['pengaturan.laporan'], self::$pageinfo['menu']);
+		self::$pageinfo['content'] = array_merge(self::$pageinfo['content'], ['subtitle'=>'Pengaturan Laporan']);
 
-		return View::make('pages.setting')->with('pageinfo', self::$pageinfo);
+		return View::make('pages.setting_laporan',[
+			'pageinfo' => self::$pageinfo
+		]);
 	}
 }
