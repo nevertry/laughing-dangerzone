@@ -36,7 +36,9 @@ class SettingController extends \BaseController {
 	{
 		// return 'something';
 		$setting_name = 'aplikasi';
-		$setting = Setting::where('name', '=', $setting_name)->firstOrFail();
+		$setting = Setting::where('name', '=', $setting_name)->first();
+
+		$setting = ($setting) ? $setting : Setting::resetSetting($setting_name);
 
 		self::$pageinfo['menu'] = add_to_array(['pengaturan.aplikasi'], self::$pageinfo['menu']);
 

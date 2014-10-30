@@ -7,13 +7,13 @@ return array(
 					'label' => 'Nama',
 					'tip' => 'Masukkan Nama PDAM',
 					'type' => 'text',
-					'value' => 'PDAM'
+					'value' => 'PDAM Kota'
 				],
 				'pdam_alamat' => [
 					'label' => 'Alamat',
 					'tip' => 'Masukkan Alamat PDAM',
 					'type' => 'text',
-					'value' => 'Jl. Soekarno Hatta 104'
+					'value' => 'Jl. Soekarno Hatta No. 104'
 				],
 			]
 		]

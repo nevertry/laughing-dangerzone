@@ -34,7 +34,7 @@ Route::group(['prefix' => 'dashboard', 'before' => 'theme.backend|auth.sentry'],
 		});
 		Route::get('aplikasi', ['as' => 'pengaturan.aplikasi', 'uses' => 'SettingController@showAplikasi']);
 		// Aplikasi Update
-		Route::post('aplikasi_update', ['as' => 'pengaturan.aplikasi.update', 'uses' => 'SettingController@updateAplikasi']);
+		Route::post('aplikasi', ['as' => 'pengaturan.aplikasi.update', 'uses' => 'SettingController@updateAplikasi']);
 
 		// Aplikasi Laporan
 		Route::get('laporan', ['as' => 'pengaturan.laporan', 'uses' => 'SettingController@showLaporan']);
