@@ -9,4 +9,9 @@ return array(
 	'user.forgot_link' => 'Saya tidak tahu sandi saya',
 	'user.register_link' => 'Buat akun',
 	'user.sign_out' => 'Sukses keluar.',
+
+	'setting.title.main' => 'Pengaturan',
+	'setting.subtitle.main' => 'Pengaturan Aplikasi',
+	'setting.subtitle.main.success' => 'Pengaturan Aplikasi berhasil diperbaharui.',
+	'setting.subtitle.main.fail' => 'Pengaturan Aplikasi gagal diperbaharui.',
 );

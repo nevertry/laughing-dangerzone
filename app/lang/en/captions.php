@@ -8,4 +8,8 @@ return array(
 	'user.sign_in_btn' => 'Sign me in',
 	'user.forgot_link' => 'I forgot my password',
 	'user.register_link' => 'Register a new membership',
+	'user.sign_out' => 'Logged out successfully',
+
+	'setting.title.main' => 'Settings',
+	'setting.subtitle.main' => 'Application Settings',
 );

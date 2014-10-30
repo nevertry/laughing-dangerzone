@@ -28,7 +28,15 @@ Route::group(['prefix' => 'dashboard', 'before' => 'theme.backend|auth.sentry'],
 
 	// SettingController
 	Route::group(['prefix' => 'pengaturan'], function () {
+		// Aplikasi Index
+		Route::get('/', function() {
+			return Redirect::route('pengaturan.aplikasi');
+		});
 		Route::get('aplikasi', ['as' => 'pengaturan.aplikasi', 'uses' => 'SettingController@showAplikasi']);
+		// Aplikasi Update
+		Route::post('aplikasi_update', ['as' => 'pengaturan.aplikasi.update', 'uses' => 'SettingController@updateAplikasi']);
+
+		// Aplikasi Laporan
 		Route::get('laporan', ['as' => 'pengaturan.laporan', 'uses' => 'SettingController@showLaporan']);
 	});
 

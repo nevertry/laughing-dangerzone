@@ -1,8 +1,6 @@
 <?php
 
-use Eloquent;
-
-class Setting extends Eloquent {
+class Setting extends \Eloquent {
 
 	protected $table = "settings";
 
@@ -10,6 +8,8 @@ class Setting extends Eloquent {
 		'name',
 		'meta_data'
 		);
+
+	public $timestamps = true;
 
 	/**
 	 * undocumented function

@@ -6,29 +6,32 @@
                     <div class='row'>
                         <!-- left column -->
                         <div class="col-md-6">
-
+                            @include('partials.error')
                             <!-- general form elements -->
                             <div class="box box-primary">
                                 <div class="box-header">
                                     <h3 class="box-title">Aplikasi PDAM</h3>
                                 </div><!-- /.box-header -->
                                 <!-- form start -->
-                                <form role="form">
+                                {{ Form::open(array('action' => 'pengaturan.aplikasi.update', 'role' => 'form')) }}
+                                    {{ Form::hidden('setting_name', $setting_name) }}
                                     <div class="box-body">
-                                        <div class="form-group">
-                                            <label for="pdam_nama">Nama PDAM</label>
-                                            <input type="text" class="form-control" id="pdam_nama" placeholder="Masukkan nama PDAM" value="{{ $settings['pdam_nama'] }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="pdam_alamat">Alamat PDAM</label>
-                                            <input type="text" class="form-control" id="pdam_alamat" placeholder="Masukkan alamat PDAM" value="{{ $settings['pdam_alamat'] }}">
-                                        </div>
+                                        @if ($setting->name == $setting_name)
+                                            @foreach (json_decode($setting->meta_data) as $meta_key => $meta_detail)
+                                                @if ($meta_detail->type == 'text')
+                                                    <div class="form-group">
+                                                        <label for="{{ $meta_key }}">{{ $meta_detail->label }}</label>
+                                                        <input type="text" class="form-control" id="{{ $meta_key }}" name="{{ $meta_key }}" placeholder="{{ $meta_detail->tip }}" value="{{ $meta_detail->value }}">
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        @endif
                                     </div><!-- /.box-body -->
 
                                     <div class="box-footer">
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
-                                </form>
+                                {{ Form::close() }}
                             </div><!-- /.box -->
 
                         </div><!--/.col (left) -->
