@@ -2,15 +2,26 @@
 
 class MasterWilayahController extends \BaseController {
 
-	private static $pageinfo = [
-		'menu' => [
-			'masterdata'
-			],
-		'content' => [
-			'title' => 'Master Data',
-			'subtitle' => 'Unit/Wilayah'
-		]
-	];
+	private static $pageinfo;
+
+	/**
+	 * undocumented function
+	 *
+	 * @return void
+	 * @author 
+	 **/
+	public function __construct()
+	{
+		self::$pageinfo = [
+			'menu' => [
+				'masterdata'
+				],
+			'content' => [
+				'title' => 'Master Data',
+				'subtitle' => 'Unit/Wilayah'
+			]
+		];
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -19,8 +30,10 @@ class MasterWilayahController extends \BaseController {
 	 */
 	public function index()
 	{
-		
-		//
+		// Show table list
+		$wilayah = MasterWilayah::all();
+
+		return $wilayah;
 	}
 
 
@@ -31,7 +44,33 @@ class MasterWilayahController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		$formdatas = [
+			'code' => [
+				'label' => 'Kode',
+				'tip'   => 'Masukkan Kode',
+			],
+			'name' => [
+				'label' => 'Nama',
+				'tip'   => 'Masukkan Nama',
+			],
+			'description' => [
+				'label' => 'Deskripsi',
+				'tip'   => 'Masukkan Deskripsi',
+			],
+			'parent_id' => [
+				'label' => 'parent_id',
+				'tip'   => 'Pilih Parent ID',
+			],
+			'level' => [
+				'label' => 'Level',
+				'tip'   => '1/2/3', // fixed
+			],
+		];
+
+		return View::make('pages.master_wilayah', [
+			'pageinfo' => self::$pageinfo,
+			'formdata' => $formdatas,
+		]);
 	}
 
 

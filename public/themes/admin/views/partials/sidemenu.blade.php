@@ -16,14 +16,14 @@
         </a>                            
 
         <ul class="treeview-menu">
-            @if (has_permission('masterdata.unit'))
-            <li><a href="#Master-Unit-Wilayah"><i class="fa fa-angle-double-right"></i> <span>Unit/Wilayah</span></a></li>
+            @if (has_permission('masterdata.wilayah'))
+            <li class="{{ setActiveMenuClass('masterdata.wilayah', $pageinfo['menu']) }}"><a href="{{ route('dashboard.masterdata.wilayah.index') }}"><i class="fa fa-angle-double-right"></i> <span>Unit/Wilayah</span></a></li>
             @endif
             @if (has_permission('masterdata.pekerjaan'))
-            <li><a href="#Master-Pekerjaan"><i class="fa fa-angle-double-right"></i> <span>Pekerjaan</span></a></li>
+            <li class="{{ setActiveMenuClass('masterdata.pekerjaan', $pageinfo['menu']) }}"><a href="#Master-Pekerjaan"><i class="fa fa-angle-double-right"></i> <span>Pekerjaan</span></a></li>
             @endif
             @if (has_permission('masterdata.peralatan'))
-            <li><a href="#Master-Peralatan"><i class="fa fa-angle-double-right"></i> <span>Peralatan</span></a></li>
+            <li class="{{ setActiveMenuClass('masterdata.peralatan', $pageinfo['menu']) }}"><a href="#Master-Peralatan"><i class="fa fa-angle-double-right"></i> <span>Peralatan</span></a></li>
             @endif
         </ul>
     </li>
@@ -191,10 +191,10 @@
         </a>
         <ul class="treeview-menu">
             @if (has_permission('pengaturan.aplikasi'))
-            <li class="{{ setActiveMenuClass('pengaturan.aplikasi', $pageinfo['menu']) }}"><a href="{{ route('pengaturan.aplikasi') }}"><i class="fa fa-angle-double-right"></i> <span>Aplikasi<span></a></li>
+            <li class="{{ setActiveMenuClass('pengaturan.aplikasi', $pageinfo['menu']) }}"><a href="{{ route('dashboard.pengaturan.aplikasi.index') }}"><i class="fa fa-angle-double-right"></i> <span>Aplikasi<span></a></li>
             @endif
             @if (has_permission('pengaturan.laporan'))
-            <li class="{{ setActiveMenuClass('pengaturan.laporan', $pageinfo['menu']) }}"><a href="{{ route('pengaturan.laporan') }}"><i class="fa fa-angle-double-right"></i> <span>Laporan<span></a></li>
+            <li class="{{ setActiveMenuClass('pengaturan.laporan', $pageinfo['menu']) }}"><a href="{{ route('dashboard.pengaturan.laporan.index') }}"><i class="fa fa-angle-double-right"></i> <span>Laporan<span></a></li>
             @endif
         </ul>
     </li>

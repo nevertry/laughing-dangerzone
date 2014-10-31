@@ -27,3 +27,50 @@ function add_to_array($new_array, $array_collections)
 	// }
 	return $array_collections;
 }
+
+function parse_args( $args, $defaults = '' ) {
+	if ( is_object( $args ) )
+		$r = get_object_vars( $args );
+	elseif ( is_array( $args ) )
+		$r =& $args;
+	else
+		die('data should be array or object.');
+
+	if ( is_array( $defaults ) )
+		return array_merge( $defaults, $r );
+	return $r;
+}
+
+function form_element_set($data, $data_key)
+{
+	$default = [
+		'label' => '',
+		'tip'   => '',
+		'value' => '',
+		'class' => ''
+	];
+
+	$data = parse_args($data, $default);
+
+	$ret = '';
+	switch ($data['type']) {
+		case 'text':
+			$ret  = '<div class="form-group ' . $data['class'] . '">';
+			$ret .= '<label for="' . $data_key . '">' . $data['label'] . '</label>';
+			$ret .=  '<input type="text" class="form-control" id="' . $data_key . '" name="' . $data_key . '" placeholder="' . $data['tip'] . '" value="' . $data['value'] . '">';
+			$ret .= '</div>';
+			break;
+		case 'textarea':
+			$ret  = '<div class="form-group ' . $data['class'] . '">';
+			$ret .= '<label for="' . $data_key . '">' . $data['label'] . '</label>';
+			$ret .=  '<textarea class="form-control" rows="3" placeholder="'. $data['tip'] .'">' . $data['value'] . '</textarea>';
+			$ret .= '</div>';
+			break;
+		
+		default:
+			# code...
+			break;
+	}
+
+    return $ret;
+}

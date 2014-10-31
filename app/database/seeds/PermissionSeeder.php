@@ -15,8 +15,8 @@ class PermissionSeeder extends Seeder {
 			// Master Data
 			'masterdata' => [
 				'masterdata',
-				'masterdata.unit',
-				'masterdata.unit.crud',
+				'masterdata.wilayah',
+				'masterdata.wilayah.crud',
 				'masterdata.pekerjaan',
 				'masterdata.pekerjaan.crud',
 				'masterdata.peralatan',
