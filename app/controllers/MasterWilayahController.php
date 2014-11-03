@@ -31,9 +31,8 @@ class MasterWilayahController extends \BaseController {
 	public function index()
 	{
 		// Show table list
-		$wilayah = MasterWilayah::all();
-
-		return $wilayah;
+		$wilayahs = MasterWilayah::with('childrenRecursive')->where('parent_id', '=', '0')->get();
+		return View::make('pages.master_wilayah_list', compact('wilayahs'));
 	}
 
 
@@ -67,7 +66,7 @@ class MasterWilayahController extends \BaseController {
 			],
 		];
 
-		return View::make('pages.master_wilayah', [
+		return View::make('pages.master_wilayah.add', [
 			'pageinfo' => self::$pageinfo,
 			'formdata' => $formdatas,
 		]);
@@ -93,7 +92,6 @@ class MasterWilayahController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
 	}
 
 

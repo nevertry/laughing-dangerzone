@@ -52,8 +52,8 @@
         {{ HTML::script(Theme::asset('js/jquery-ui.min.js')) }}
         {{ HTML::script(Theme::asset('js/bootstrap.min.js')) }}
         <!-- Morris.js charts -->
-        {{ HTML::script(Theme::asset('js/raphael-min.js')) }}
-        {{ HTML::script(Theme::asset('js/plugins/morris/morris.min.js')) }}
+        {{-- HTML::script(Theme::asset('js/raphael-min.js')) --}}
+        {{-- HTML::script(Theme::asset('js/plugins/morris/morris.min.js')) --}}
         <!-- Sparkline -->
         {{ HTML::script(Theme::asset('js/plugins/sparkline/jquery.sparkline.min.js')) }}
         <!-- jvectormap -->
@@ -74,10 +74,10 @@
         {{ HTML::script(Theme::asset('js/AdminLTE/app.js')) }}
 
         <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        {{ HTML::script(Theme::asset('js/AdminLTE/dashboard.js')) }}
+        {{-- HTML::script(Theme::asset('js/AdminLTE/dashboard.js')) --}}
 
         <!-- AdminLTE for demo purposes -->
         <!-- {{ HTML::script(Theme::asset('js/AdminLTE/demo.js')) }} -->
-
+        @yield('footer')
     </body>
 </html>

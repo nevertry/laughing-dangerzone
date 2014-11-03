@@ -18,4 +18,13 @@ class MasterWilayah extends \Eloquent {
 		return $this->hasMany('MasterWilayah', 'parent_id');
 	}
 
+	public function parentRecursive()
+	{
+		return $this->parent()->with('parentRecursive');
+	}
+
+	public function childrenRecursive()
+	{
+		return $this->children()->with('childrenRecursive');
+	}
 }

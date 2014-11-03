@@ -26,24 +26,35 @@ Route::group(['prefix' => 'dashboard', 'before' => 'theme.backend|auth.sentry'],
 	// Dashboard/Home
 	Route::get('/', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
 
-	// SettingController
+	// Master Data
+	Route::group(['prefix' => 'masterdata'], function () {
+		// Aplikasi Index
+		Route::get('/', function() {
+			return Redirect::route('dashboard.masterdata.wilayah.index');
+		});
+		Route::resource('wilayah', 'MasterWilayahController');
+	});
+
+	// Pengaturan
 	Route::group(['prefix' => 'pengaturan'], function () {
 		// Aplikasi Index
 		Route::get('/', function() {
-			return Redirect::route('pengaturan.aplikasi');
+			return Redirect::route('dashboard.pengaturan.aplikasi.index');
 		});
-		Route::get('aplikasi', ['as' => 'pengaturan.aplikasi', 'uses' => 'SettingController@showAplikasi']);
+		Route::get('aplikasi', ['as' => 'dashboard.pengaturan.aplikasi.index', 'uses' => 'SettingController@showAplikasi']);
+
 		// Aplikasi Update
-		Route::post('aplikasi', ['as' => 'pengaturan.aplikasi.update', 'uses' => 'SettingController@updateAplikasi']);
+		Route::post('aplikasi', ['as' => 'dashboard.pengaturan.aplikasi.update', 'uses' => 'SettingController@updateAplikasi']);
 
 		// Aplikasi Laporan
-		Route::get('laporan', ['as' => 'pengaturan.laporan', 'uses' => 'SettingController@showLaporan']);
+		Route::get('laporan', ['as' => 'dashboard.pengaturan.laporan.index', 'uses' => 'SettingController@showLaporan']);
 	});
 
 	// debug
 	Route::get('user', ['as' => 'user', 'uses' => 'DashboardController@showUserPermissions']);
 });
 
+// User Session Control
 Route::group(array('before' => 'theme.backend'), function()
 {
 	Route::get('signin', 'UserController@getSignIn');
