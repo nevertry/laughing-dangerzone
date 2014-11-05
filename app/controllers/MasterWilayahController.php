@@ -43,32 +43,50 @@ class MasterWilayahController extends \BaseController {
 	 */
 	public function create()
 	{
+		$key_value_fields = ['id', 'name'];
+		$wilayah_parents = MasterWilayah::parentOnly($key_value_fields)->get()->toArray();
+		// echo '<pre>';
+		// print_r($wilayah_parents);
+		// exit;
+		// return $wilayah_parents;
+
 		$formdatas = [
 			'code' => [
-				'label' => 'Kode',
-				'tip'   => 'Masukkan Kode',
+				'type'		=> 'text',
+				'label'		=> 'Kode',
+				'tip'		=> 'Masukkan Kode',
+				'preset'	=> ''
 			],
 			'name' => [
-				'label' => 'Nama',
-				'tip'   => 'Masukkan Nama',
+				'type'		=> 'text',
+				'label'		=> 'Nama',
+				'tip'		=> 'Masukkan Nama',
+				'preset'	=> ''
 			],
 			'description' => [
-				'label' => 'Deskripsi',
-				'tip'   => 'Masukkan Deskripsi',
+				'type'		=> 'text',
+				'label'		=> 'Deskripsi',
+				'tip'		=> 'Masukkan Deskripsi',
+				'preset'	=> ''
 			],
 			'parent_id' => [
-				'label' => 'parent_id',
-				'tip'   => 'Pilih Parent ID',
+				'type'		=> 'dropdown',
+				'label'		=> 'Parent',
+				'tip'		=> 'Pilih Parent ID',
+				'preset'	=> ['field'	=> $key_value_fields,
+								'data'	=> $wilayah_parents],
 			],
-			'level' => [
-				'label' => 'Level',
-				'tip'   => '1/2/3', // fixed
-			],
+			// 'level' => [
+			// 	'type'		=> 'text',
+			// 	'label'		=> 'Level',
+			// 	'tip'		=> '0/1/2', // fixed
+			// 	'preset'	=> ''
+			// ],
 		];
 
-		return View::make('pages.master_wilayah.add', [
+		return View::make('pages.master_wilayah_add', [
 			'pageinfo' => self::$pageinfo,
-			'formdata' => $formdatas,
+			'formdatas' => $formdatas,
 		]);
 	}
 

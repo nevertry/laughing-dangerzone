@@ -66,7 +66,23 @@ function form_element_set($data, $data_key)
 			$ret .=  '<textarea class="form-control" rows="3" placeholder="'. $data['tip'] .'">' . $data['value'] . '</textarea>';
 			$ret .= '</div>';
 			break;
-		
+		case 'dropdown':
+			$ret  = '<div class="form-group ' . $data['class'] . '">';
+			$ret .= '<label for="' . $data_key . '">' . $data['label'] . '</label>';
+
+			// $dropdown_data = array();
+
+			$ret .= '<select class="form-control">';
+			foreach ($data['preset']['data'] as $key => $value) {
+				// $dropdown_data = array_push($dropdown_data, [$data['preset']['field'][0], $data['preset']['field'][1]]);
+				$ret .= '<option value="' . $value[$data['preset']['field'][0]] . '">';
+				$ret .= $value[$data['preset']['field'][1]];
+				$ret .= '</option>';
+			}
+			$ret .= '</select>';
+			// $ret .= Form::select($data_key, $dropdown_data);
+			$ret .= '</div>';
+			break;
 		default:
 			# code...
 			break;

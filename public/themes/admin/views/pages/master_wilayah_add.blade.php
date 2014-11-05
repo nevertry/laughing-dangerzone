@@ -13,7 +13,7 @@
                                     <h3 class="box-title">Wilayah/Unit</h3>
                                 </div><!-- /.box-header -->
                                 <!-- form start -->
-                                {{ Form::open(array('action' => 'dashboard.master.wilayah.store', 'role' => 'form')) }}
+                                {{ Form::open(array('action' => 'dashboard.masterdata.wilayah.store', 'role' => 'form')) }}
 
                                     <div class="box-body">
 
