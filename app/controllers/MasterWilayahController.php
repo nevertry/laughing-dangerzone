@@ -32,7 +32,10 @@ class MasterWilayahController extends \BaseController {
 	{
 		// Show table list
 		$wilayahs = MasterWilayah::with('childrenRecursive')->where('parent_id', '=', '0')->get();
-		return View::make('pages.master_wilayah_list', compact('wilayahs'));
+		return View::make('pages.master_wilayah_list', [
+			'wilayahs' => $wilayahs,
+			'pageinfo' => self::$pageinfo
+		]);
 	}
 
 
@@ -44,13 +47,18 @@ class MasterWilayahController extends \BaseController {
 	public function create()
 	{
 		$key_value_fields = ['id', 'name'];
-		$wilayah_parents = MasterWilayah::parentOnly($key_value_fields)->get()->toArray();
-		// echo '<pre>';
-		// print_r($wilayah_parents);
-		// exit;
-		// return $wilayah_parents;
+
+		$wilayah_parents = MasterWilayah::forDropdownSelect();
+		array_unshift($wilayah_parents, ['id'=> '0', 'name'=>'[ --- Wiayah Baru --- ]']);
 
 		$formdatas = [
+			'parent_id' => [
+				'type'		=> 'dropdown',
+				'label'		=> 'Parent',
+				'tip'		=> 'Pilih Parent ID',
+				'preset'	=> ['field'	=> $key_value_fields,
+								'data'	=> $wilayah_parents],
+			],
 			'code' => [
 				'type'		=> 'text',
 				'label'		=> 'Kode',
@@ -69,27 +77,13 @@ class MasterWilayahController extends \BaseController {
 				'tip'		=> 'Masukkan Deskripsi',
 				'preset'	=> ''
 			],
-			'parent_id' => [
-				'type'		=> 'dropdown',
-				'label'		=> 'Parent',
-				'tip'		=> 'Pilih Parent ID',
-				'preset'	=> ['field'	=> $key_value_fields,
-								'data'	=> $wilayah_parents],
-			],
-			// 'level' => [
-			// 	'type'		=> 'text',
-			// 	'label'		=> 'Level',
-			// 	'tip'		=> '0/1/2', // fixed
-			// 	'preset'	=> ''
-			// ],
 		];
 
-		return View::make('pages.master_wilayah_add', [
+		return View::make('pages.master_wilayah_create', [
 			'pageinfo' => self::$pageinfo,
 			'formdatas' => $formdatas,
 		]);
 	}
-
 
 	/**
 	 * Store a newly created resource in storage.
@@ -98,7 +92,51 @@ class MasterWilayahController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		// Get all inputs
+		$inputs  = Input::all();
+
+		// validate
+		$validator = MasterWilayah::validate($inputs);
+
+		// error messages
+		$messages = array();
+
+		// check validation
+		if ($validator->fails())
+		{
+			$messages[0] = $validator->errors()->first();
+			// return $validator->errors();
+		}
+		else
+		{
+			// Save to Database
+			$masterWilayah = new MasterWilayah();
+			$masterWilayah->code = Input::get('code');
+			$masterWilayah->name = Input::get('name');
+			$masterWilayah->description = Input::get('description');
+			$masterWilayah->parent_id = Input::get('parent_id');
+
+			$level = 0;
+			$masterWilayah->level = MasterWilayah::setWilayahLevelByParentId($masterWilayah->parent_id);
+			if ($masterWilayah->parent_id > 0)
+			{
+				$parent = MasterWilayah::find($masterWilayah->parent_id);
+				$level = (int) $parent->level + 1;
+			}
+			$masterWilayah->level = $level;
+
+			$masterWilayah->save();
+
+			// Redirect to List
+			return Redirect::route('dashboard.masterdata.wilayah.index')->with([
+				'messages' => ['Data berhasi disimpan']
+			]);
+		}
+
+		return Redirect::route('dashboard.masterdata.wilayah.create')->with([
+			'messages' => $messages
+		]);
+
 	}
 
 

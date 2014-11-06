@@ -66,21 +66,28 @@ function form_element_set($data, $data_key)
 			$ret .=  '<textarea class="form-control" rows="3" placeholder="'. $data['tip'] .'">' . $data['value'] . '</textarea>';
 			$ret .= '</div>';
 			break;
-		case 'dropdown':
+		case 'dropdown': // single level dropdown
 			$ret  = '<div class="form-group ' . $data['class'] . '">';
 			$ret .= '<label for="' . $data_key . '">' . $data['label'] . '</label>';
-
-			// $dropdown_data = array();
-
-			$ret .= '<select class="form-control">';
+			$ret .= '<select class="form-control selectize" name="' . $data_key . '">';
 			foreach ($data['preset']['data'] as $key => $value) {
-				// $dropdown_data = array_push($dropdown_data, [$data['preset']['field'][0], $data['preset']['field'][1]]);
 				$ret .= '<option value="' . $value[$data['preset']['field'][0]] . '">';
 				$ret .= $value[$data['preset']['field'][1]];
 				$ret .= '</option>';
 			}
 			$ret .= '</select>';
-			// $ret .= Form::select($data_key, $dropdown_data);
+			$ret .= '</div>';
+			break;
+		case 'dropdown-with-child': // dropdown with child
+			$ret  = '<div class="form-group ' . $data['class'] . '">';
+			$ret .= '<label for="' . $data_key . '">' . $data['label'] . '</label>';
+			$ret .= '<select class="form-control" name="' . $data_key . '">';
+			foreach ($data['preset']['data'] as $key => $value) {
+				$ret .= '<option value="' . $value[$data['preset']['field'][0]] . '">';
+				$ret .= $value[$data['preset']['field'][1]];
+				$ret .= '</option>';
+			}
+			$ret .= '</select>';
 			$ret .= '</div>';
 			break;
 		default:
@@ -89,4 +96,19 @@ function form_element_set($data, $data_key)
 	}
 
     return $ret;
+}
+
+function prependFirstArray($initial_array=array(), $first_array=array())
+{
+	return array_unshift($initial_array, $first_array);
+}
+
+function prependChar($string, $char=' ', $many=1)
+{
+	if ($many < 1) return $string;
+
+	for ($i=0; $i < $many; $i++) { 
+		$string = $char . $string;
+	}
+	return $string;
 }

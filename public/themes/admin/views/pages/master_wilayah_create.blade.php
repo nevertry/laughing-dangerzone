@@ -33,3 +33,14 @@
                     </div><!-- /.row -->
                 </section><!-- /.content -->
 @stop
+
+@section('footer')
+        {{ HTML::script(Theme::asset('js/selectize.min.js')) }}
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('.selectize').selectize({
+                });
+            });
+        </script>
+@stop

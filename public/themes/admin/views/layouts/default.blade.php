@@ -17,6 +17,9 @@
         {{ HTML::style(Theme::asset('css/daterangepicker/daterangepicker-bs3.css')) }}
         <!-- bootstrap wysihtml5 - text editor -->
         {{ HTML::style(Theme::asset('css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')) }}
+        <!-- selectize -->
+        {{ HTML::style(Theme::asset('css/selectize.css')) }}
+        {{ HTML::style(Theme::asset('css/selectize.bootstrap3.css')) }}
         <!-- Theme style -->
         {{ HTML::style(Theme::asset('css/AdminLTE.css')) }}
         <!-- Custom Theme style -->
