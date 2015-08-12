@@ -1,4 +1,4 @@
-<?php namespace AirMinum\Composer;
+<?php namespace Xkerangka\Composer;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -6,6 +6,6 @@ class ComposerServiceProvider extends ServiceProvider {
 	
 	public function register()
 	{
-		$this->app->view->composer('layouts.default', 'AirMinum\Composer\AirMinumMenuComposer');
+		$this->app->view->composer('layouts.default', 'Xkerangka\Composer\XkerangkaMenuComposer');
 	}
 }

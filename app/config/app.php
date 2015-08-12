@@ -78,7 +78,7 @@ return array(
 	|
 	*/
 
-	'key' => '4AKpGrZkNaiOypsL3z2k8qYRc1Wi3uLJ',
+	'key' => 'lAJGUMLLRUkssVjgEntVNpKSZGqzkfpL',
 
 	'cipher' => MCRYPT_RIJNDAEL_128,
 
@@ -128,7 +128,7 @@ return array(
 		// 'Barryvdh\Debugbar\ServiceProvider',
 
 		// Custom Packages
-		'AirMinum\Composer\ComposerServiceProvider'
+		'Xkerangka\Composer\ComposerServiceProvider'
 
 	),
 

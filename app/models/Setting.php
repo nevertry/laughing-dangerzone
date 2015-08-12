@@ -39,7 +39,7 @@ class Setting extends \Eloquent {
 		// create setting
 		return Setting::create([
 			'name' => $key,
-			'meta_data' => json_encode(Config::get('airminum.setting.'.$key))
+			'meta_data' => json_encode(Config::get('xkerangka.setting.'.$key))
 			]);
 
 ////

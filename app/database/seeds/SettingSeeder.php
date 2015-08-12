@@ -11,7 +11,7 @@ class SettingSeeder extends Seeder {
 	{
 		DB::table('settings')->truncate();
 
-		$settings = Config::get('airminum.setting');
+		$settings = Config::get('xkerangka.setting');
 
 		foreach ($settings as $setting_name => $setting_value)
 		{

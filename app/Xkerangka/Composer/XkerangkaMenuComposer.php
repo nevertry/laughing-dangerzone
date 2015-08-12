@@ -1,8 +1,8 @@
-<?php namespace AirMinum\Composer;
+<?php namespace Xkerangka\Composer;
 
 use User;
 
-class AirMinumMenuComposer {
+class XkerangkaMenuComposer {
 
 	/**
 	 * undocumented function

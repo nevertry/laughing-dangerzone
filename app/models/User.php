@@ -14,7 +14,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      * Name of Cache
      * @var array
      */
-	public static $cache_prefix = 'Bendungan.';
+	public static $cache_prefix = 'XKerangka.';
 
 	/**
 	 * The database table used by the model.

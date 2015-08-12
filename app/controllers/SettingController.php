@@ -1,7 +1,5 @@
 <?php
 
-use Lang;
-
 class SettingController extends \BaseController {
 
 	private static $pageinfo;
@@ -17,7 +15,7 @@ class SettingController extends \BaseController {
 		// Set Page Info
 		self::$pageinfo = [
 			'menu' => [
-				'pengaturan'
+				'settings'
 				],
 			'content' => [
 				'title' => trans('captions.setting.title.main'),
@@ -32,17 +30,16 @@ class SettingController extends \BaseController {
 	 * @return void
 	 * @author 
 	 **/
-	public function showAplikasi()
+	public function appIndex()
 	{
-		// return 'something';
-		$setting_name = 'aplikasi';
+		$setting_name = 'app';
 		$setting = Setting::where('name', '=', $setting_name)->first();
 
 		$setting = ($setting) ? $setting : Setting::resetSetting($setting_name);
 
-		self::$pageinfo['menu'] = add_to_array(['pengaturan.aplikasi'], self::$pageinfo['menu']);
+		self::$pageinfo['menu'] = add_to_array(['settings.app'], self::$pageinfo['menu']);
 
-		return View::make('pages.setting_aplikasi', [
+		return View::make('pages.settings_app', [
 			'pageinfo' => self::$pageinfo,
 			'setting_name' => $setting_name,
 			'setting' => $setting,
@@ -55,12 +52,12 @@ class SettingController extends \BaseController {
 	 * @return void
 	 * @author 
 	 **/
-	public function validateAplikasi($setting_name, $key_name)
+	public function appValidate($setting_name, $key_name)
 	{
 		$rules = array(
-			'setting_name' => 'required',
-			'pdam_nama' => 'required',
-			'pdam_alamat' => 'required',
+			// 'setting_name' => 'required',
+			// 'pdam_nama' => 'required',
+			// 'pdam_alamat' => 'required',
 			);
 		return Validator::make($setting_name, $rules);
 	}
@@ -71,14 +68,14 @@ class SettingController extends \BaseController {
 	 * @return void
 	 * @author 
 	 **/
-	public function updateAplikasi()
+	public function appUpdate()
 	{
-		$key_name = 'aplikasi';
+		$key_name = 'app';
 		$errors = '';
 
 		$posted_settings  = Input::all();
 
-		$validator = $this->validateAplikasi($posted_settings, $key_name);
+		$validator = $this->appValidate($posted_settings, $key_name);
 
 		if ($validator->fails())
 		{
@@ -88,7 +85,7 @@ class SettingController extends \BaseController {
 		else
 		{
 			// get default settings
-			$declared_settings = Config::get('airminum.setting.'.$key_name);
+			$declared_settings = Config::get('xkerangka.setting.'.$key_name);
 
 			$updated_settings = array();
 
@@ -114,24 +111,9 @@ class SettingController extends \BaseController {
 			$messages[0] = trans('setting.subtitle.main.success');
 		}
 
-		return Redirect::route('pengaturan.aplikasi')->with([
+		return Redirect::route('dashboard.settings.app.index')->with([
 			'messages' => $messages
 		]);
 	}
 
-	/**
-	 * undocumented function
-	 *
-	 * @return void
-	 * @author 
-	 **/
-	public function showLaporan()
-	{
-		self::$pageinfo['menu'] = array_merge(['pengaturan.laporan'], self::$pageinfo['menu']);
-		self::$pageinfo['content'] = array_merge(self::$pageinfo['content'], ['subtitle'=>'Pengaturan Laporan']);
-
-		return View::make('pages.setting_laporan',[
-			'pageinfo' => self::$pageinfo
-		]);
-	}
 }

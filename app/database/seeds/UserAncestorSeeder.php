@@ -18,7 +18,7 @@ class UserAncestorSeeder extends Seeder {
 		$this->forAdmin();
 
 		// Set User Hublang
-		$this->forHublang();
+		// $this->forHublang();
 	}
 
 	private function userCreator($user_data, $group_name, $permissions)

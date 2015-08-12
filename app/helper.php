@@ -1,5 +1,41 @@
 <?php
 
+/**
+ * print_r or var_dump variable's value in more readible form.
+ *
+ * @param mixed $var Variable to print.
+ */
+function printvar($var, $dump=false)
+{
+	echo '<pre>';
+
+	if ($dump)
+		var_dump($var);
+	else
+		print_r($var);
+
+	echo '</pre>';
+}
+
+/**
+ * Return a value it has set, or else use default value.
+ *
+ * Usage:
+ *   $a = 'potato';
+ *
+ *   echo ifset($a);           // outputs 'potato'
+ *   echo ifset($a, 'carrot'); // outputs 'potato'
+ *   echo ifset($b);           // outputs nothing
+ *   echo ifset($b, 'carrot'); // outputs 'carrot'
+ *
+ * @param $var Initial value.
+ * @param $else Else value.
+ * @return $var or $else.
+ */
+function ifset (&$var, $else = '') {
+	return isset($var) && $var ? $var : $else;
+}
+
 function has_permission($permission_name)
 {
 	$user_permissions = User::getPermissions();

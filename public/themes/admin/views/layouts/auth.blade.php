@@ -2,7 +2,7 @@
 <html class="bg-grue">
     <head>
         <meta charset="UTF-8">
-        <title>Air Minum Terpadu</title>
+        <title>Xkerangka</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         {{ HTML::style(Theme::asset('css/bootstrap.min.css')) }}
         {{ HTML::style(Theme::asset('css/font-awesome.min.css')) }}
