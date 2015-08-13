@@ -41,6 +41,9 @@ Route::group(['prefix' => 'dashboard', 'before' => 'theme.backend|auth.sentry|ha
 			return Redirect::route('dashboard.riddles.index');
 		});
 		Route::get('index', ['as' => 'dashboard.riddles.index', 'uses' => 'RiddlesController@showIndex']);
+
+		// Riddle create
+		Route::get('create', ['as' => 'dashboard.riddles.create', 'uses' => 'RiddlesController@showCreate']);
 	});
 
 	# Guests

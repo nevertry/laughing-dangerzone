@@ -33,9 +33,23 @@ class RiddlesController extends \BaseController {
 	 **/
 	public function showIndex()
 	{
-		return View::make('pages.empty', [
+		return View::make('pages.riddles.index', [
 			'pageinfo' => self::$pageinfo,
 			'content' => 'This is Riddles index page.'
+		]);
+
+	}
+
+	/**
+	 * Create Riddle page
+	 *
+	 * @return void
+	 * @author 
+	 **/
+	public function showCreate()
+	{
+		return View::make('pages.riddles.create', [
+			'pageinfo' => self::$pageinfo,
 		]);
 
 	}
