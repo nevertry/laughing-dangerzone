@@ -52,7 +52,7 @@
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header bg-light-blue">
-                                    <img src="{{ Theme::asset('img/avatar3.png') }}" class="img-circle" alt="User Image" />
+                                    <img src="{{ Theme::asset('img/avatar04.png') }}" class="img-circle" alt="User Image" />
                                     <p>
                                         Administrator
                                         <small>Just an admin.</small>
