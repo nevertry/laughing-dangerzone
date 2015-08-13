@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="bg-grue">
+<html class="lockscreen">
     <head>
         <meta charset="UTF-8">
         <title>{{ Config::get('xkerangka.app.title') }}</title>

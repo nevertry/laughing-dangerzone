@@ -22,6 +22,12 @@ App::after(function($request, $response)
 	//
 });
 
+App::missing(function($exception)
+{
+	Theme::init('admin');
+	return View::make('pages.error-missing');
+});
+
 /*
 |--------------------------------------------------------------------------
 | Authentication Filters
@@ -54,9 +60,71 @@ Route::filter('auth.basic', function()
 	return Auth::basic();
 });
 
+/*
+|--------------------------------------------------------------------------
+| Sentry Filter
+|--------------------------------------------------------------------------
+*/
 Route::filter('auth.sentry', function()
 {
 	if ( ! Sentry::check()) return Redirect::to('signin');
+});
+
+/*
+|--------------------------------------------------------------------------
+| hasAcces filter (permissions)
+|--------------------------------------------------------------------------
+|
+| Check if the user has permission (group/user)
+|
+*/
+Route::filter('hasAccess', function($route, $request, $value)
+{
+	try
+	{
+		$user = Sentry::getUser();
+
+		if( ! $user->hasAccess($value))
+		{
+			return Redirect::route('signin')->withErrors(array(Lang::get('user.noaccess')));
+		}
+	}
+	catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+	{
+		return Redirect::route('signin')->withErrors(array(Lang::get('user.notfound')));
+	}
+
+});
+
+/*
+|--------------------------------------------------------------------------
+| inGroup filter
+|--------------------------------------------------------------------------
+|
+| Check if the user belongs to a group
+|
+*/
+Route::filter('inGroup', function($route, $request, $value)
+{
+	try
+	{
+		$user = Sentry::getUser();
+
+		$group = Sentry::findGroupByName($value);
+
+		if( ! $user->inGroup($group))
+		{
+			return Redirect::route('signin')->withErrors(array(Lang::get('user.noaccess')));
+		}
+	}
+	catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+	{
+		return Redirect::route('signin')->withErrors(array(Lang::get('user.notfound')));
+	}
+	catch (Cartalyst\Sentry\Groups\GroupNotFoundException $e)
+	{
+		return Redirect::route('signin')->withErrors(array(Lang::get('group.notfound')));
+	}
 });
 
 /*
@@ -114,5 +182,5 @@ Route::filter('theme.backend', function() {
 
 // View::composer('layouts.default', function($view)
 // {
-//   $view->with('title', 'Air Minum Terpadu');
+//   $view->with('title', 'Replaced Title');
 // });

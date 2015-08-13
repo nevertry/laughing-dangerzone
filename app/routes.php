@@ -19,30 +19,25 @@
 Route::get('/', function()
 {
 	return Redirect::to('dashboard');
-}
-);
+});
 
-Route::group(['prefix' => 'dashboard', 'before' => 'theme.backend|auth.sentry'], function () {
-	// Dashboard/Home
+Route::group(['prefix' => 'dashboard', 'before' => 'theme.backend|auth.sentry|hasAccess:dashboard'], function () {
+	# Dashboard/Home
 	Route::get('/', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
 
-	// Settings
-	Route::group(['prefix' => 'settings'], function () {
-		// Aplikasi Index
-		Route::get('/', function() {
-			return Redirect::route('dashboard.settings.app.index');
+	# Pokemon (blocked)
+	Route::group(['prefix' => 'error', 'before' => 'theme.backend'], function () {
+		Route::get('/', function(){
+			return View::make('pages.error', [
+				'pageinfo' => ['content'=>['title'=>'Path Blocked', 'subtitle'=>'Admin on your way!']],
+				]);
 		});
-		Route::get('app', ['as' => 'dashboard.settings.app.index', 'uses' => 'SettingController@appIndex']);
-
-		// Aplikasi Update
-		Route::post('app', ['as' => 'dashboard.settings.app.update', 'uses' => 'SettingController@appUpdate']);
-
 	});
 
 });
 
 // User Session Control
-Route::group(array('before' => 'theme.backend'), function()
+Route::group(['before' => 'theme.backend'], function()
 {
 	Route::get('signin', 'UserController@getSignIn');
 
@@ -50,4 +45,5 @@ Route::group(array('before' => 'theme.backend'), function()
 
 	Route::get('signout', 'UserController@getSignOut');
 });
+
 
