@@ -24,11 +24,19 @@ return array(
 
 	# Riddles
 	'riddles' => 'Riddles',
-	'riddles.list' => 'Riddles List',
+	'riddles.index' => 'Riddles List',
 	'riddles.create' => 'Create new Riddles',
 
-	# Riddles
+	# Guests
 	'guests' => 'Guest',
-	'guests.list' => 'Guests List',
+	'guests.index' => 'Guests List',
+
+	# Charmaps
+	'charmaps' => 'Character-Symbol',
+	'charmaps.index' => 'Mapping Index',
+
+	# Settings
+	'settings' => 'Settings',
+	'settings.index' => 'Application',
 
 );

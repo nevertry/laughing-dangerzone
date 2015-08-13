@@ -13,7 +13,7 @@
                                     <h3 class="box-title">{{ $pageinfo['content']['subtitle'] }}</h3>
                                 </div><!-- /.box-header -->
                                 <!-- form start -->
-                                {{ Form::open(array('action' => 'dashboard.settings.app.update', 'role' => 'form')) }}
+                                {{ Form::open(array('action' => 'dashboard.settings.update', 'role' => 'form')) }}
                                     {{ Form::hidden('setting_name', $setting_name) }}
                                     <div class="box-body">
                                         @if ($setting->name == $setting_name)

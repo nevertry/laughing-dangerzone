@@ -12,4 +12,21 @@ return array(
 
 	'setting.title.main' => 'Settings',
 	'setting.subtitle.main' => 'Application Settings',
+
+	# Analytics
+	'analytics.title.main' => 'Analytics',
+	'analytics.subtitle.main' => 'Analyticals Data',
+
+	# Riddles
+	'riddles.title.main' => 'Riddles',
+	'riddles.subtitle.main' => 'Riddles Data',
+
+	# Guests
+	'guests.title.main' => 'Guests',
+	'guests.subtitle.main' => 'Guests Data',
+
+	# Charmaps
+	'charmaps.title.main' => 'Character Map',
+	'charmaps.subtitle.main' => 'Character Map Data',
+
 );

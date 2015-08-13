@@ -5,10 +5,9 @@ class SettingController extends \BaseController {
 	private static $pageinfo;
 
 	/**
-	 * undocumented function
+	 * Construct
 	 *
 	 * @return void
-	 * @author 
 	 **/
 	public function __construct ()
 	{
@@ -25,12 +24,11 @@ class SettingController extends \BaseController {
 	}
 
 	/**
-	 * undocumented function
+	 * Show Index Setting Page
 	 *
 	 * @return void
-	 * @author 
 	 **/
-	public function appIndex()
+	public function showAppIndex()
 	{
 		$setting_name = 'app';
 		$setting = Setting::where('name', '=', $setting_name)->first();
@@ -47,12 +45,11 @@ class SettingController extends \BaseController {
 	}
 
 	/**
-	 * undocumented function
+	 * Validate Index Settings
 	 *
 	 * @return void
-	 * @author 
 	 **/
-	public function appValidate($setting_name, $key_name)
+	public function validateApp($setting_name, $key_name)
 	{
 		$rules = array(
 			// 'setting_name' => 'required',
@@ -63,19 +60,18 @@ class SettingController extends \BaseController {
 	}
 
 	/**
-	 * undocumented function
+	 * To update settings.
 	 *
 	 * @return void
-	 * @author 
 	 **/
-	public function appUpdate()
+	public function postApp()
 	{
 		$key_name = 'app';
 		$errors = '';
 
 		$posted_settings  = Input::all();
 
-		$validator = $this->appValidate($posted_settings, $key_name);
+		$validator = $this->validateApp($posted_settings, $key_name);
 
 		if ($validator->fails())
 		{
@@ -111,7 +107,7 @@ class SettingController extends \BaseController {
 			$messages[0] = trans('setting.subtitle.main.success');
 		}
 
-		return Redirect::route('dashboard.settings.app.index')->with([
+		return Redirect::route('dashboard.settings.app')->with([
 			'messages' => $messages
 		]);
 	}

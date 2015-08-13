@@ -28,16 +28,27 @@ class PermissionSeeder extends Seeder {
 			// Riddles
 			'riddles' => [
 				'riddles',
-				'riddles.list',
+				'riddles.index',
 				'riddles.create',
 				],
 
 			// Guest
 			'guests' => [
 				'guests',
-				'guests.list',
+				'guests.index',
 				],
 
+			// Character Mapping
+			'charmaps' => [
+				'charmaps',
+				'charmaps.index',
+				],
+
+			// Guest
+			'settings' => [
+				'settings',
+				'settings.index',
+				],
 			];
 
 		foreach ($permissions_groups as $permissions)

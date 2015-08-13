@@ -25,6 +25,54 @@ Route::group(['prefix' => 'dashboard', 'before' => 'theme.backend|auth.sentry|ha
 	# Dashboard/Home
 	Route::get('/', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
 
+	# Analytics
+	Route::group(['prefix' => 'analytics', 'before' => 'hasAccess:analytics'], function () {
+		// Analytics Index
+		Route::get('/', function() {
+			return Redirect::route('dashboard.analytics.index');
+		});
+		Route::get('index', ['as' => 'dashboard.analytics.index', 'uses' => 'AnalyticsController@showIndex']);
+	});
+
+	# Riddles
+	Route::group(['prefix' => 'riddles', 'before' => 'hasAccess:analytics'], function () {
+		// Riddles Index
+		Route::get('/', function() {
+			return Redirect::route('dashboard.riddles.index');
+		});
+		Route::get('index', ['as' => 'dashboard.riddles.index', 'uses' => 'RiddlesController@showIndex']);
+	});
+
+	# Guests
+	Route::group(['prefix' => 'guests', 'before' => 'hasAccess:guests'], function () {
+		// Guests Index
+		Route::get('/', function() {
+			return Redirect::route('dashboard.guests.index');
+		});
+		Route::get('index', ['as' => 'dashboard.guests.index', 'uses' => 'GuestsController@showIndex']);
+	});
+
+	# Charmaps : Letter-Symbol Mapping
+	Route::group(['prefix' => 'charmaps', 'before' => 'hasAccess:charmaps'], function () {
+		// Charmap Index
+		Route::get('/', function() {
+			return Redirect::route('dashboard.charmaps.index');
+		});
+		Route::get('index', ['as' => 'dashboard.charmaps.index', 'uses' => 'CharmapsController@showIndex']);
+	});
+
+	# Settings
+	Route::group(['prefix' => 'settings', 'before' => 'hasAccess:settings|inGroup:Administrator'], function () {
+		// Settings Index
+		Route::get('/', function() {
+			return Redirect::route('dashboard.settings.app');
+		});
+		Route::get('app', ['as' => 'dashboard.settings.app', 'uses' => 'SettingController@showAppIndex']);
+
+		// Settings Update
+		Route::post('app', ['as' => 'dashboard.settings.update', 'uses' => 'SettingController@postApp']);
+	});
+
 	# Pokemon (blocked)
 	Route::group(['prefix' => 'error', 'before' => 'theme.backend'], function () {
 		Route::get('/', function(){
@@ -39,11 +87,11 @@ Route::group(['prefix' => 'dashboard', 'before' => 'theme.backend|auth.sentry|ha
 // User Session Control
 Route::group(['before' => 'theme.backend'], function()
 {
-	Route::get('signin', 'UserController@getSignIn');
+	Route::get('signin', ['as'=>'signin', 'uses'=>'UserController@getSignIn']);
 
-	Route::post('signin', 'UserController@postSignIn');
+	Route::post('signin', ['as'=>'signin', 'uses'=>'UserController@postSignIn']);
 
-	Route::get('signout', 'UserController@getSignOut');
+	Route::get('signout', ['as'=>'signout', 'uses'=>'UserController@getSignOut']);
 });
 
 
