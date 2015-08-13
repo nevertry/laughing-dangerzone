@@ -3,7 +3,9 @@
 @section('content')
                 <section class="content">
                     <div class="row">
-                    	{{ ifset($content, 'No content.') }} &alpha; &beta; &gamma;
+                    	<div class="col-md-6">
+                    		{{ ifset($content, 'No content.') }} &alpha; &beta; &gamma; &theta;
+                    	</div>
                     </div>
                 </section>
 @stop

@@ -8,6 +8,7 @@
         </a>
     </li>
 
+<!--
     @if (has_permission('analytics'))
     <li class="treeview {{ setActiveMenuClass('analytics', $pageinfo['menu']) }}">
         <a href="#">
@@ -26,6 +27,7 @@
         </ul>
     </li>
     @endif
+-->
 
     @if (has_permission('riddles'))
     <li class="treeview {{ setActiveMenuClass('riddles', $pageinfo['menu']) }}">
@@ -40,12 +42,13 @@
             <li class="{{ setActiveMenuClass('riddles.index', $pageinfo['menu']) }}"><a href="{{ route('dashboard.riddles.index') }}"><i class="fa fa-angle-double-right"></i> <span>{{ Lang::get('menu.riddles.index') }}</span></a></li>
             @endif
             @if (has_permission('riddles.create'))
-            <li class="{{ setActiveMenuClass('riddles.create', $pageinfo['menu']) }}"><a href="{{ route('dashboard.riddles.index') }}"><i class="fa fa-angle-double-right"></i> <span>{{ Lang::get('menu.riddles.create') }}</span></a></li>
+            <li class="{{ setActiveMenuClass('riddles.create', $pageinfo['menu']) }}"><a href="{{ route('dashboard.riddles.create') }}"><i class="fa fa-angle-double-right"></i> <span>{{ Lang::get('menu.riddles.create') }}</span></a></li>
             @endif
         </ul>
     </li>
     @endif
 
+<!--
     @if (has_permission('guests'))
     <li class="treeview {{ setActiveMenuClass('guests', $pageinfo['menu']) }}">
         <a href="#">
@@ -77,7 +80,7 @@
         </ul>
     </li>
     @endif
-
+-->
     @if (has_permission('settings'))
     <li class="treeview {{ setActiveMenuClass('settings', $pageinfo['menu']) }}">
         <a href="#">
