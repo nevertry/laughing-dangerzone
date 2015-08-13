@@ -13,6 +13,11 @@ class PermissionSeeder extends Seeder {
 
 		$permissions_groups = [
 
+			// Dashboard
+			'dashboard' => [
+				'dashboard',
+				],
+
 			// Analytics
 			'analytics' => [
 				'analytics',
