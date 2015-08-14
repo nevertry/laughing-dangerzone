@@ -17,6 +17,8 @@
         {{ HTML::style(Theme::asset('css/daterangepicker/daterangepicker-bs3.css')) }}
         <!-- bootstrap wysihtml5 - text editor -->
         {{ HTML::style(Theme::asset('css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')) }}
+        <!-- DATA TABLES -->
+        {{ HTML::style(Theme::asset('css/datatables/dataTables.bootstrap.css')) }}
         <!-- selectize -->
         {{ HTML::style(Theme::asset('css/selectize.css')) }}
         {{ HTML::style(Theme::asset('css/selectize.bootstrap3.css')) }}
@@ -72,6 +74,9 @@
         {{ HTML::script(Theme::asset('js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')) }}
         <!-- iCheck -->
         {{ HTML::script(Theme::asset('js/plugins/iCheck/icheck.min.js')) }}
+        <!-- DATA TABES SCRIPT -->
+        {{ HTML::script(Theme::asset('js/plugins/datatables/jquery.dataTables.js')) }}
+        {{ HTML::script(Theme::asset('js/plugins/datatables/dataTables.bootstrap.js')) }}
 
         <!-- AdminLTE App -->
         {{ HTML::script(Theme::asset('js/AdminLTE/app.js')) }}

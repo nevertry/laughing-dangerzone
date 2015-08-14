@@ -44,6 +44,7 @@ Route::group(['prefix' => 'dashboard', 'before' => 'theme.backend|auth.sentry|ha
 
 		// Riddle create
 		Route::get('create', ['as' => 'dashboard.riddles.create', 'uses' => 'RiddlesController@showCreate']);
+		Route::post('create', ['as' => 'dashboard.riddles.create', 'uses' => 'RiddlesController@postCreate']);
 	});
 
 	# Guests

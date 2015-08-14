@@ -36,15 +36,39 @@ function ifset (&$var, $else = '') {
 	return isset($var) && $var ? $var : $else;
 }
 
+/**
+ * Check if user has correct permission.
+ *
+ * @param string $permission_name Permission to check.
+ * @return boolean
+ */
 function has_permission($permission_name)
 {
 	$user_permissions = User::getPermissions();
 	return ((array_key_exists($permission_name, $user_permissions)) && ($user_permissions[$permission_name] == 1)) ? true : false;
 }
 
+/**
+ * [HTML] Set active class value
+ *
+ * @param string $required_permission Required permission to check.
+ * @param string $given_permission Current given permission.
+ * @return boolean
+ */
 function setActiveMenuClass($required_permission, $given_permission)
 {
 	return (in_array($required_permission, $given_permission)) ? 'active' : '';
+}
+
+/**
+ * [HTML] set has-error class value
+ *
+ * @param boolean $has_error Error checked.
+ * @return boolean
+ */
+function setClassHasError($has_error)
+{
+	return ($has_error) ? 'has-error' : '';
 }
 
 // Add tp array collection from array only
