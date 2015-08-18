@@ -10,6 +10,17 @@
                                 <div class="box-header">
                                     <h3 class="box-title">Riddle List</h3>
                                 </div><!-- /.box-header -->
+
+                                @include('partials.info')
+
+                                @if ( $errors->count() > 0 )
+                                <div class="row margin">
+                                    <div class="col-md-12">
+                                        @include('partials.error')
+                                    </div>
+                                </div>
+                                @endif
+
                                 <div class="box-body table-responsive">
                                     <table id="table-list" class="table table-bordered table-hover">
                                         <thead>
@@ -25,16 +36,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach ($data_riddles as $data_riddle)
+                                        @foreach ($data_riddles as $riddle)
                                             <tr>
-                                                <td>{{{ $data_riddle->id }}}</td>
-                                                <td>{{{ $data_riddle->question }}}</td>
-                                                <td>{{{ $data_riddle->type }}}</td>
-                                                <td>{{{ $data_riddle->content }}}</td>
-                                                <td>{{{ $data_riddle->clues }}}</td>
-                                                <td>{{{ $data_riddle->answer }}}</td>
-                                                <td>{{{ $data_riddle->publish_text }}}</td>
-                                                <td><a class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a> <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i> Delete</button></td>
+                                                <td>{{{ $riddle->id }}}</td>
+                                                <td>{{{ $riddle->question }}}</td>
+                                                <td>{{{ $riddle->type }}}</td>
+                                                <td>{{{ $riddle->content }}}</td>
+                                                <td>{{{ $riddle->clues }}}</td>
+                                                <td>{{{ $riddle->answer }}}</td>
+                                                <td>{{{ $riddle->publish_text }}}</td>
+                                                <td><a class="btn btn-warning" href="{{ route('dashboard.riddles.edit', ['id' => $riddle->id]) }}"><i class="fa fa-edit"></i> Edit</a> <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i> Delete</button></td>
                                             </tr>
                                         @endforeach
                                         </tbody>

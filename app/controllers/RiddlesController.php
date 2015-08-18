@@ -28,7 +28,7 @@ class RiddlesController extends \BaseController {
 	 *
 	 * @return View
 	 **/
-	public function showIndex()
+	public function getIndex()
 	{
 		return View::make('pages.riddles.index', [
 			'pageinfo' => self::$pageinfo,
@@ -43,7 +43,7 @@ class RiddlesController extends \BaseController {
 	 *
 	 * @return View
 	 **/
-	public function showCreate()
+	public function getCreate()
 	{
 		return View::make('pages.riddles.create', [
 			'pageinfo' => self::$pageinfo,
@@ -58,8 +58,6 @@ class RiddlesController extends \BaseController {
 	 **/
 	public function postCreate()
 	{
-		// printvar(Input::all());
-		// die();
 		$riddle_data = [
 			'type' => Input::get('riddle_type'),
 			'content' => Input::get('riddle_content'),
@@ -85,4 +83,71 @@ class RiddlesController extends \BaseController {
 		return (Input::has('createOnce')) ? Redirect::route('dashboard.riddles.index') : Redirect::route('dashboard.riddles.create');
 	}
 
+	public function getEdit($id)
+	{
+		try
+		{
+			$riddle_data = Riddle::findOrFail($id)->toArray();
+		}
+		catch (Exception $e)
+		{
+			return Redirect::route('dashboard.riddles.index')->withErrors($e->getMessage());
+		}
+
+		return View::make('pages.riddles.edit', [
+			'pageinfo' => self::$pageinfo,
+			'riddle_data' => $riddle_data,
+		]);
+	}
+
+	public function postEdit($id)
+	{
+		$riddle_data = [
+			'id' => Input::get('riddle_id'),
+			'type' => Input::get('riddle_type'),
+			'content' => Input::get('riddle_content'),
+			'question' => Input::get('riddle_question'),
+			'answer' => Input::get('riddle_answer'),
+			'clues' => Input::get('riddle_clues'),
+			'publish_status' => Input::get('riddle_publish_status')
+		];
+
+		$validate = Riddle::validate($riddle_data);
+
+		if ($validate->passes())
+		{
+			# Check with existing data
+			if ($id != $riddle_data['id'])
+			{
+				return Redirect::route('dashboard.riddles.index')
+					->withErrors("Invalid given ID.")
+					->withInput(Input::all());
+			}
+
+			# Otherwise: OK
+			# Get old data first
+			$riddle = Riddle::find($riddle_data['id']);
+
+			$riddle->type = $riddle_data['type'];
+			$riddle->content = $riddle_data['content'];
+			$riddle->question = $riddle_data['question'];
+			$riddle->answer = $riddle_data['answer'];
+			$riddle->clues = $riddle_data['clues'];
+			$riddle->publish_status = $riddle_data['publish_status'];
+
+			# Update old data
+			$riddle->save();
+
+			# Set session for informational purpose
+			Session::flash('info', "Riddle #{$id} updated!");
+		}
+		else
+		{
+			return Redirect::route('dashboard.riddles.edit', ['id' => $id])
+				->withErrors($validate->messages())
+				->withInput(Input::all());
+		}
+
+		return Redirect::route('dashboard.riddles.index');
+	}
 }
