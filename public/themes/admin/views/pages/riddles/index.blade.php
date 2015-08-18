@@ -45,7 +45,8 @@
                                                 <td>{{{ $riddle->clues }}}</td>
                                                 <td>{{{ $riddle->answer }}}</td>
                                                 <td>{{{ $riddle->publish_text }}}</td>
-                                                <td><a class="btn btn-warning" href="{{ route('dashboard.riddles.edit', ['id' => $riddle->id]) }}"><i class="fa fa-edit"></i> Edit</a> <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i> Delete</button></td>
+                                                <td><a class="btn btn-warning" href="{{ route('dashboard.riddles.edit', ['id' => $riddle->id]) }}"><i class="fa fa-edit"></i> Edit</a>
+                                                <a class="btn btn-danger" href="javascript:void(0)" onclick="deleteData('{{$riddle->id}}')"><i class="fa fa-trash-o"></i> Delete</button></td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -84,5 +85,18 @@
                     "aaSorting": []
                 });
             });
+
+            function deleteData(id)
+            {
+                var confirmation = confirm('{{ trans("Are you sure want to delete this data?") }}');
+                var delete_url = '{{ route('dashboard.riddles') }}/'+id+'/delete';
+
+                console.log(delete_url);
+
+                if (confirmation)
+                {
+                    window.location.href = delete_url;
+                }
+            }
         </script>
 @stop

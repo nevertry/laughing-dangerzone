@@ -160,4 +160,31 @@ class RiddlesController extends \BaseController {
 
 		return Redirect::route('dashboard.riddles.index');
 	}
+
+	/**
+	 * Delete Riddle Process
+	 *
+	 * @return void
+	 **/
+	public function getDelete($id)
+	{
+		if (!empty($id))
+		{
+			# Do Delete
+			$affectedRows = Riddle::where('id', $id)->delete();
+
+			if ($affectedRows)
+			{
+				# Set info once
+				Session::flash('info', "Riddle #{$id} deleted!");
+			}
+			else
+			{
+				# Set info once
+				Session::flash('info', "Riddle #{$id} not found. No riddle deleted.");
+			}
+		}
+
+		return Redirect::route('dashboard.riddles.index');
+	}
 }

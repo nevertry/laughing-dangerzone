@@ -37,9 +37,9 @@ Route::group(['prefix' => 'dashboard', 'before' => 'theme.backend|auth.sentry|ha
 	# Riddles
 	Route::group(['prefix' => 'riddles', 'before' => 'hasAccess:analytics'], function () {
 		// Riddles Index
-		Route::get('/', function() {
-			return Redirect::route('dashboard.riddles.index');
-		});
+		Route::get('/', ['as'=>'dashboard.riddles', 'uses' => function() {
+				return Redirect::route('dashboard.riddles.index');
+			}]);
 		Route::get('index', ['as' => 'dashboard.riddles.index', 'uses' => 'RiddlesController@getIndex']);
 
 		// Riddle create
@@ -49,6 +49,10 @@ Route::group(['prefix' => 'dashboard', 'before' => 'theme.backend|auth.sentry|ha
 		// Riddle edit
 		Route::get('{id?}/edit', ['as' => 'dashboard.riddles.edit', 'uses' => 'RiddlesController@getEdit']);
 		Route::post('{id?}/edit', ['as' => 'dashboard.riddles.edit', 'uses' => 'RiddlesController@postEdit']);
+
+		// Riddle edit
+		Route::get('{id?}/delete', ['as' => 'dashboard.riddles.delete', 'uses' => 'RiddlesController@getDelete']);
+
 	});
 
 	# Guests
