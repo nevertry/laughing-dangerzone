@@ -149,6 +149,158 @@
   border-bottom-left-radius: 0 !important;
 }
 
+/*
+Skin Bruen (Blue+Brown) #42B8EA #FFA43F
+Color based on: http://paletton.com/#uid=23r0u0ko4TScFXZiSVWtgQOH6LI
+*/
+/* skin-bruen navbar */
+.skin-bruen .navbar {
+  background-color: #FFA43F;
+}
+.skin-bruen .navbar .nav a {
+  color: rgba(255, 255, 255, 0.8);
+}
+.skin-bruen .navbar .nav > li > a:hover,
+.skin-bruen .navbar .nav > li > a:active,
+.skin-bruen .navbar .nav > li > a:focus,
+.skin-bruen .navbar .nav .open > a,
+.skin-bruen .navbar .nav .open > a:hover,
+.skin-bruen .navbar .nav .open > a:focus {
+  background: rgba(0, 0, 0, 0.1);
+  color: #f6f6f6;
+}
+.skin-bruen .navbar .navbar-right > .nav {
+  margin-right: 10px;
+}
+.skin-bruen .navbar .sidebar-toggle .icon-bar {
+  background: rgba(255, 255, 255, 0.8);
+}
+.skin-bruen .navbar .sidebar-toggle:hover .icon-bar {
+  background: #f6f6f6 !important;
+}
+/* skin-bruen logo */
+.skin-bruen .logo {
+  background-color: #0694D2;
+  color: #f9f9f9;
+}
+.skin-bruen .logo > a {
+  color: #f9f9f9;
+}
+.skin-bruen .logo:hover {
+  background: #357ca5;
+}
+/* skin-bruen content header */
+.skin-bruen .right-side > .content-header {
+  background: #fbfbfb;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+/* skin-bruen user panel */
+.skin-bruen .user-panel > .image > img {
+  border: 1px solid #dfdfdf;
+}
+.skin-bruen .user-panel > .info,
+.skin-bruen .user-panel > .info > a {
+  color: #FFFFFF;
+}
+/* skin-bruen sidebar */
+.skin-bruen .sidebar {
+  border-bottom: 1px solid #1DA6E1;
+}
+.skin-bruen .sidebar > .sidebar-menu > li {
+  border-top: 1px solid #1DA6E1;
+  border-bottom: 1px solid #1DA6E1;
+}
+.skin-bruen .sidebar > .sidebar-menu > li:first-of-type {
+  border-top: 1px solid #1DA6E1;
+}
+.skin-bruen .sidebar > .sidebar-menu > li:first-of-type > a {
+  border-top: 1px solid #1DA6E1;
+}
+.skin-bruen .sidebar > .sidebar-menu > li > a {
+  margin-right: 1px;
+}
+.skin-bruen .sidebar > .sidebar-menu > li > a:hover,
+.skin-bruen .sidebar > .sidebar-menu > li.active > a {
+  color: #fff;
+  background: #258EDB;
+}
+.skin-bruen .sidebar > .sidebar-menu > li > .treeview-menu {
+  margin: 0 1px;
+  background: #1DA6E1;
+}
+.skin-bruen .left-side {
+  background: #42B8EA;
+  -webkit-box-shadow: inset -3px 0px 8px -4px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset -3px 0px 8px -4px rgba(0, 0, 0, 0.1);
+  box-shadow: inset -3px 0px 8px -4px rgba(0, 0, 0, 0.07);
+}
+.skin-bruen .sidebar a {
+  color: #FFFFFF;
+}
+.skin-bruen .sidebar a:hover {
+  text-decoration: none;
+}
+.skin-bruen .treeview-menu > li > a {
+  color: #FFFFFF;
+}
+.skin-bruen .treeview-menu > li.active > a,
+.skin-bruen .treeview-menu > li > a:hover {
+  color: #EEEEEE;
+}
+.skin-bruen .sidebar-form {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  border: 1px solid #dbdbdb;
+  margin: 10px 10px;
+}
+.skin-bruen .sidebar-form input[type="text"],
+.skin-bruen .sidebar-form .btn {
+  box-shadow: none;
+  background-color: #fafafa;
+  border: 1px solid #fafafa;
+  height: 35px;
+}
+.skin-bruen .sidebar-form input[type="text"] {
+  color: #666;
+  -webkit-border-top-left-radius: 2px !important;
+  -webkit-border-top-right-radius: 0 !important;
+  -webkit-border-bottom-right-radius: 0 !important;
+  -webkit-border-bottom-left-radius: 2px !important;
+  -moz-border-radius-topleft: 2px !important;
+  -moz-border-radius-topright: 0 !important;
+  -moz-border-radius-bottomright: 0 !important;
+  -moz-border-radius-bottomleft: 2px !important;
+  border-top-left-radius: 2px !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 2px !important;
+}
+.skin-bruen .sidebar-form input[type="text"]:focus,
+.skin-bruen .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+  background-color: #fff;
+  color: #666;
+}
+.skin-bruen .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+  border-left-color: #fff;
+}
+.skin-bruen .sidebar-form .btn {
+  color: #999;
+  -webkit-border-top-left-radius: 0 !important;
+  -webkit-border-top-right-radius: 2px !important;
+  -webkit-border-bottom-right-radius: 2px !important;
+  -webkit-border-bottom-left-radius: 0 !important;
+  -moz-border-radius-topleft: 0 !important;
+  -moz-border-radius-topright: 2px !important;
+  -moz-border-radius-bottomright: 2px !important;
+  -moz-border-radius-bottomleft: 0 !important;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 2px !important;
+  border-bottom-right-radius: 2px !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+
 /* Skin Plus */
 .fa.fa-circle {
   color: #85C34A;

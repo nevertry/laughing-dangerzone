@@ -16,7 +16,7 @@
           <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
     </head>
-    <body class="bg-grue">
+    <body class="bg-bruen">
 
         @yield('content')
 

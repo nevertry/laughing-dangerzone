@@ -34,7 +34,7 @@
           <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
     </head>
-    <body class="skin-grue">
+    <body class="skin-bruen">
         <!-- header logo: style can be found in header.less -->
         @include('layouts.admin.header')
         <div class="wrapper row-offcanvas row-offcanvas-left">
