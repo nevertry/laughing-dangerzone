@@ -30,45 +30,10 @@ class RiddlesController extends \BaseController {
 	 **/
 	public function showIndex()
 	{
-		$data_riddles = [
-			[
-				'ID' => 1,
-				'Instruction' => "Name an instrument.",
-				'Type' => "Text",
-				'Content' => "Usually it has six different strings.",
-				'Clues' => "G1,U2,I3,T4,A5,R6",
-				'Answer' => "GUITAR",
-			],
-			[
-				'ID' => 2,
-				'Instruction' => "What is the main color of the body of the figure?",
-				'Type' => "Image",
-				'Content' => Theme::asset('img/sample/instrument.jpg'),
-				'Clues' => "R1,E2,D3",
-				'Answer' => "RED",
-			],
-			[
-				'ID' => 3,
-				'Instruction' => "How many strings this instrument had?",
-				'Type' => "Video",
-				'Content' => Theme::asset('img/sample/instrument.jpg'),
-				'Clues' => "S1,I2,X3",
-				'Answer' => "SIX",
-			],
-			[
-				'ID' => 4,
-				'Instruction' => "In musical notes, C also known as ....",
-				'Type' => "Audio",
-				'Content' => Theme::asset('img/sample/instrument.jpg'),
-				'Clues' => "D1,O2",
-				'Answer' => "DO",
-			]
-		];
-
 		return View::make('pages.riddles.index', [
 			'pageinfo' => self::$pageinfo,
 			'content' => 'This is Riddles index page.',
-			'data_riddles' => $data_riddles,
+			'data_riddles' => Riddle::getAllRiddles(),
 		]);
 
 	}

@@ -7,6 +7,8 @@ class Riddle extends \Eloquent {
 
 	protected $fillable = ['id', 'type', 'content', 'question', 'answer', 'clues', 'publish_status', 'creator_id', 'editor_id'];
 
+	protected $appends = array('publish_text');
+
 	protected static $allowed_content_types = [
 		'text' => "Text",
 		'image' => "Image",
@@ -28,6 +30,16 @@ class Riddle extends \Eloquent {
 		'clues' => 'required',
 	];
 
+    public function getPublishTextAttribute()
+    {
+		if (array_key_exists($this->publish_status, self::$allowed_publish_status))
+		{
+			return self::$allowed_publish_status[$this->publish_status];
+		}
+
+        return '(unknown)';
+    }
+
 	public static function getContentTypes()
 	{
 		return self::$allowed_content_types;
@@ -43,5 +55,26 @@ class Riddle extends \Eloquent {
 		$rules = (count($external_rules)) ? $external_rules : self::$rules;
 
 		return Validator::make($data, $rules);
+	}
+
+	public static function getAllRiddles($parameters=array())
+	{
+		$model = new Riddle();
+		extract($parameters);
+
+		if (isset($limit))
+			$model = $model->limit($limit);
+
+		if (isset($offset))
+			$model = $model->offset($offset);
+
+		if (isset($orderBy) && isset($orderByField))
+			$model = $model->orderBy($orderByField, $orderBy);
+		else
+			$model = $model->orderBy('created_at', 'desc');
+
+		$model = $model->get();
+
+		return $model;
 	}
 }
