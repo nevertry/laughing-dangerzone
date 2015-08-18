@@ -83,6 +83,11 @@ class RiddlesController extends \BaseController {
 		return (Input::has('createOnce')) ? Redirect::route('dashboard.riddles.index') : Redirect::route('dashboard.riddles.create');
 	}
 
+	/**
+	 * Update Riddle
+	 *
+	 * @return void
+	 **/
 	public function getEdit($id)
 	{
 		try
@@ -100,6 +105,11 @@ class RiddlesController extends \BaseController {
 		]);
 	}
 
+	/**
+	 * Update Riddle Process (POST)
+	 *
+	 * @return void
+	 **/
 	public function postEdit($id)
 	{
 		$riddle_data = [
