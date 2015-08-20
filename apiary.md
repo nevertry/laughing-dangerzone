@@ -1,11 +1,11 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http://riddlebox.stagingapps.net/
 
-# Nusantariddle
+# RiddleBox
 
-Nusantariddle API to give user a riddle to guess.
+RiddleBox API to give user a riddle to guess.
 
-# Nusantariddle API Root [/]
+# RiddleBox API Root [/]
 
 This resource does not have any attributes. Instead it offers the initial
 API affordances in the form of the links in the JSON body.
@@ -30,7 +30,7 @@ Sign in and get the riddle.
 **POST Parameters:**
 
 + **name** - (required, string) - Name of user. ex: *Pangeran Diponegoro*
-+ **email** - (required, string) - E-mail address of the user. ex: *diponegoro@riddle.nusa*
++ **email** - (required, string) - E-mail address of the user. ex: *diponegoro@riddle.box*
 
 **RESPONSE data attributes:**
 
@@ -47,7 +47,7 @@ Sign in and get the riddle.
         Pangeran Diponegoro
         -----BOUNDARY
         Content-Disposition: form-data; name="email"
-        diponegoro@riddle.nusa
+        diponegoro@riddle.box
         -----BOUNDARY
 
 + Response 200 (application/json)
@@ -58,11 +58,11 @@ Sign in and get the riddle.
             "message": "Successfully registered",
             "data": {
                 "name": "Diponegoro",
-                "email": "diponegoro@riddle.nusa",
+                "email": "diponegoro@riddle.box",
                 "riddle": {
                     "id": 2,
                     "type": "text",
-                    "description": "This lake is the largest volcanic lake in the world and is in Sumatra, Indonesia. Samosir island within the lake is an island within the island of Sumatra.",
+                    "content": "This lake is the largest volcanic lake in the world and is in Sumatra, Indonesia. Samosir island within the lake is an island within the island of Sumatra.",
                     "question": "What is the name of largest lake in Indonesia?",
                     "clues": [
                         "L1",
@@ -88,7 +88,7 @@ Guess a riddle.
 
 **POST Parameters:**
 
-+ **email** - (required, string) - Registered e-mail address. ex: *diponegoro@riddle.nusa*
++ **email** - (required, string) - Registered e-mail address. ex: *diponegoro@riddle.box*
 + **riddle_id** - (required, integer) - Riddle ID. ex: *2*
 + **answer** - (required, string) - Answer to riddle. ex: *KUTA BALI*
 
@@ -102,7 +102,7 @@ Guess a riddle.
 
         -----BOUNDARY
         Content-Disposition: form-data; name="email"
-        diponegoro@riddle.nusa
+        diponegoro@riddle.box
         -----BOUNDARY
         Content-Disposition: form-data; name="riddle_id"
         2
