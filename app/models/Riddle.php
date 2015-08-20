@@ -7,7 +7,7 @@ class Riddle extends \Eloquent {
 
 	protected $fillable = ['id', 'type', 'content', 'question', 'answer', 'clues', 'publish_status', 'creator_id', 'editor_id'];
 
-	protected $appends = array('publish_text');
+	protected $appends = array('publish_text', 'clues_box');
 
 	protected static $allowed_content_types = [
 		'text' => "Text",
@@ -30,15 +30,30 @@ class Riddle extends \Eloquent {
 		'clues' => 'required',
 	];
 
-    public function getPublishTextAttribute()
-    {
+	protected $hidden = ['clues', 'answer', 'creator_id', 'editor_id', 'created_at', 'updated_at', 'publish_text', 'publish_status'];
+
+	public function getCluesBoxAttribute()
+	{
+		$clues = $this->clues;
+		$clues_box = array();
+
+		if (!empty($clues))
+		{
+			return explode(',', $clues);
+		}
+
+		return $clues_box;
+	}
+
+	public function getPublishTextAttribute()
+	{
 		if (array_key_exists($this->publish_status, self::$allowed_publish_status))
 		{
 			return self::$allowed_publish_status[$this->publish_status];
 		}
 
-        return '(unknown)';
-    }
+		return '(unknown)';
+	}
 
 	public static function getContentTypes()
 	{
