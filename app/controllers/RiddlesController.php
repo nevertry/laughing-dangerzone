@@ -92,7 +92,7 @@ class RiddlesController extends \BaseController {
 	{
 		try
 		{
-			$riddle_data = Riddle::findOrFail($id)->toArray();
+			$riddle_data = Riddle::findOrFail($id);
 		}
 		catch (Exception $e)
 		{
