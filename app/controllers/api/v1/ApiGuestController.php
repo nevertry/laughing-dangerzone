@@ -3,9 +3,9 @@
 namespace Api\v1;
 
 /**
-* Class: ApiUserController
+* Class: ApiGuestController
 */
-class ApiUserController extends BaseApiController
+class ApiGuestController extends BaseApiController
 {
 	public function postSignIn()
 	{

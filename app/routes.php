@@ -133,7 +133,7 @@ Route::group(['prefix' => 'api', 'namespace' => 'Api\v1'], function() {
 		*/
 		Route::post('/signin', [
 			'as' => 'api.v1.signin',
-			'uses' => 'ApiUserController@postSignIn'
+			'uses' => 'ApiGuestController@postSignIn'
 		]);
 
 	});
