@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: http://riddlebox.stagingapps.net/
+HOST: http://riddlebox.stagingapps.net/api
 
 # RiddleBox
 
@@ -64,12 +64,12 @@ Sign in and get the riddle.
                     "type": "text",
                     "content": "This lake is the largest volcanic lake in the world and is in Sumatra, Indonesia. Samosir island within the lake is an island within the island of Sumatra.",
                     "question": "What is the name of largest lake in Indonesia?",
-                    "clues": [
+                    "clues_box": [
                         "L1",
                         "A2",
                         "K3",
                         "E4",
-                        "",
+                        "_",
                         "T5",
                         "O6",
                         "B7",
