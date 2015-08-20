@@ -32,7 +32,7 @@ function printvar($var, $dump=false)
  * @param $else Else value.
  * @return $var or $else.
  */
-function ifset (&$var, $else = '') {
+function ifset ($var, $else = '') {
 	return isset($var) && $var ? $var : $else;
 }
 
