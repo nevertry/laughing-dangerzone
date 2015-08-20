@@ -22,10 +22,47 @@ App::after(function($request, $response)
 	//
 });
 
-App::missing(function($exception)
+if (!function_exists('appErrorResponse')):
+function appErrorResponse($exception, $code)
 {
-	Theme::init('admin');
-	return View::make('pages.error-missing');
+	switch ($code) {
+		case 404:
+			$message = 'Not Available.';
+			break;
+		default:
+			$message = 'Not Allowed.';
+			break;
+	}
+
+	# Is trying to reach API?
+	if (substr(Request::path(), 0, strlen('api/')) === 'api/')
+	{
+		// return;
+		return \XApi::response([
+			'error' => 9000,
+			'message' => $message,
+			'data' => null
+		], $code);
+	}
+	# Other than: api/
+	else
+	{
+		Theme::init('admin');
+		return View::make('pages.error-missing');
+	}
+}
+endif;
+
+// When requested page is missing
+App::missing(function(Exception $exception)
+{
+	return appErrorResponse($exception, 404);
+});
+
+// Otherwise, any error
+App::error(function(Exception $exception, $code)
+{
+	return appErrorResponse($exception, $code);
 });
 
 /*

@@ -107,3 +107,34 @@ Route::group(['before' => 'theme.backend'], function()
 });
 
 
+/*
+|--------------------------------------------------------------------------
+| API Routes V1
+|--------------------------------------------------------------------------
+*/
+
+Route::group(['prefix' => 'api', 'namespace' => 'Api\v1'], function() {
+	/**
+	* Route for API version 1.
+	* url: /api/v1
+	*/
+	Route::group(['prefix' => 'v1'], function() {
+		/**
+		* GET Available Resource
+		* url: /api/v1
+		*/
+		Route::get('/', [
+			'uses' => 'ApiSystemController@getReources'
+		]);
+
+		/**
+		* Sign In (Register + Get riddle)
+		* url: /api/v1
+		*/
+		Route::post('/signin', [
+			'as' => 'api.v1.signin',
+			'uses' => 'ApiUserController@postSignIn'
+		]);
+
+	});
+});
