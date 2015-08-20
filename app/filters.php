@@ -38,7 +38,7 @@ function appErrorResponse($exception, $code)
 	if (substr(Request::path(), 0, strlen('api/')) === 'api/')
 	{
 		// return;
-		return \XApi::response([
+		return Response::json([
 			'error' => 9000,
 			'message' => $message,
 			'data' => null
