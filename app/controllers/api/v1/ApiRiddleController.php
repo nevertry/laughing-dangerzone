@@ -47,12 +47,14 @@ class ApiRiddleController extends BaseApiController
 						if (!empty($riddle->answer) && (strtolower($riddle->answer) == strtolower($inputData['answer'])))
 						{
 							self::$message = "Awesome! You're answer is correct. Congratulation! \xF0\x9F\x91\x8D";
+							$inputData['status'] = 'solved';
 							self::$data    = $inputData;
 						}
 						else
 						{
 							self::$error = 1;
 							self::$message = "Sorry, wrong answer!";
+							$inputData['status'] = 'unsolved';
 							self::$data    = $inputData;
 						}
 					}
