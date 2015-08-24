@@ -92,4 +92,19 @@ class Riddle extends \Eloquent {
 
 		return $model;
 	}
+
+	public function getRandomRiddle()
+	{
+		# TRY = 0;
+		# GET_ONE: Select 1 riddle from riddles_pools where taken_status = 0
+		# # IF [Not Found], update riddles_pools set taken_status = 0
+		# # # goto: GET_ONE (TRY+1)
+		# # ELSE, return riddle_id.
+
+		# PREPARE_NEXT:
+		# # CEK_LEFTOVER: Is there ANY riddles_pools with status = 0?
+		# # # IF [Not Found], POPULATE_POOLS
+
+		# POPULATE_POOLS: truncate table, insert Every_Riddles into Riddle_Pools.
+	}
 }
