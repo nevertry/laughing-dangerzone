@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('PermissionSeeder');
 		$this->call('UserAncestorSeeder');
 		$this->call('SettingSeeder');
+		$this->call('RiddleSeeder');
 	}
 
 }

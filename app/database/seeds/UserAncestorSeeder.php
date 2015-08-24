@@ -48,7 +48,7 @@ class UserAncestorSeeder extends Seeder {
 	{
 		$user_data = array(
 			'email'       => 'admin@admin.com',
-			'password'    => 'password',
+			'password'    => 'password1',
 			'first_name'  => 'Administrator',
 			'activated'   => 1
 			);
@@ -57,7 +57,7 @@ class UserAncestorSeeder extends Seeder {
 
 		$this->userCreator($user_data, $group_name, $permissions);
 	}
-
+/*
 	private function forHublang()
 	{
 		$user_data = array(
@@ -87,4 +87,5 @@ class UserAncestorSeeder extends Seeder {
 
 		$this->userCreator($user_data, $group_name, $permissions);
 	}
+*/
 }
