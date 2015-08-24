@@ -31,8 +31,6 @@ class ApiGuestController extends BaseApiController
 			# Found existing guest.
 			else
 			{
-				// self::$error   = 0;
-				// self::$message = "Success.";
 				self::$data    = $guest;
 			}
 		}
@@ -40,7 +38,7 @@ class ApiGuestController extends BaseApiController
 		else
 		{
 			self::$error   = 5000;
-			self::$message = "Cannot pass validation step when sign in.";
+			self::$message = "Sign In Error: Cannot validate inputted data.";
 			self::$data    = \Input::all();
 		}
 
@@ -57,7 +55,6 @@ class ApiGuestController extends BaseApiController
 		$inputData = [
 			'name' => \Input::get('name'),
 			'email' => \Input::get('email'),
-			// 'riddle_id' => 7
 		];
 
 		# Validate Inputted Data, make sure this guest is fresh.
@@ -71,7 +68,7 @@ class ApiGuestController extends BaseApiController
 		else
 		{
 			self::$error   = 5000;
-			self::$message = "Cannot pass validation step when register.";
+			self::$message = "Register Error: Cannot validate inputted data.";
 			self::$data    = \Input::all();
 		}
 
