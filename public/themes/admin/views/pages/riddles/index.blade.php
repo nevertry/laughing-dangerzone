@@ -36,7 +36,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach ($data_riddles as $riddle)
+                                        @forelse ($data_riddles as $riddle)
                                             <tr>
                                                 <td>{{{ $riddle->id }}}</td>
                                                 <td>{{{ $riddle->question }}}</td>
@@ -48,7 +48,9 @@
                                                 <td><a class="btn btn-warning" href="{{ route('dashboard.riddles.edit', ['id' => $riddle->id]) }}"><i class="fa fa-edit"></i> Edit</a>
                                                 <a class="btn btn-danger" href="javascript:void(0)" onclick="deleteData('{{$riddle->id}}')"><i class="fa fa-trash-o"></i> Delete</button></td>
                                             </tr>
-                                        @endforeach
+                                        @empty
+                                            
+                                        @endforelse
                                         </tbody>
                                         <tfoot>
                                             <tr>
