@@ -33,7 +33,57 @@ function printvar($var, $dump=false)
  * @return $var or $else.
  */
 function ifset ($var, $else = '') {
-	return isset($var) && $var ? $var : $else;
+	return isset($var) ? $var : $else;
+}
+
+/**
+ * Return a value of an object with parameter has set, or else use default value.
+ *
+ * @param $obj Object variable.
+ * @param $objParam Object Parameter Name.
+ * @param $else Else value.
+ * @return $obj property or $else.
+ */
+function ifobset($obj, $objParam, $else='')
+{
+	if (is_object($obj))
+		return (property_exists($obj, $objParam)) ? $obj->$objParam : $else;
+	else
+		return $else;
+}
+
+/**
+ * Return a value of an array key has set, or else use default value.
+ *
+ * @param $arr Array variable.
+ * @param $arrKey Array Key Name.
+ * @param $else Else value.
+ * @return $array key value or $else.
+ */
+function ifarrset($arr, $arrKey, $else='')
+{
+	if (is_array($arr))
+		return (array_key_exists($arrKey, $arr)) ? $arr[$arrKey] : $else;
+	else
+		return $else;
+}
+
+/**
+ * Return a value of an object or array with parameter/index has set, or else use default value.
+ *
+ * @param $ao Object variable.
+ * @param $aoParam Object Parameter Name.
+ * @param $else Else value.
+ * @return $obj property or $else.
+ */
+function ifpset($ao, $aoPar, $else='')
+{
+	if (is_object($ao))
+		return ifobset($ao, $aoPar, $else);
+	elseif (is_array($ao))
+		return ifarrset($ao, $aoPar, $else);
+	else
+		return $else;
 }
 
 /**
