@@ -101,9 +101,14 @@ class Guest extends \Eloquent {
 	{
 		# Get available Riddle ID from the 'POOL'.
 		# Update guest's riddle_id.
-		$riddlePools = [6,7,8,9];
+		$riddlePools = self::getRiddlePools();
 		$pickedRiddle = array_rand($riddlePools, 1);
 
-		return $riddlePools[$pickedRiddle];
+		return $pickedRiddle;
+	}
+
+	public static function getRiddlePools()
+	{
+		return Riddle::select('id')->where('publish_status', '=', 1)->get()->keyBy('id')->toArray();
 	}
 }
