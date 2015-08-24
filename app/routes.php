@@ -129,12 +129,20 @@ Route::group(['prefix' => 'api', 'namespace' => 'Api\v1'], function() {
 
 		/**
 		* Sign In (Register + Get riddle)
-		* url: /api/v1
+		* url: /api/v1/signin
 		*/
 		Route::post('/signin', [
 			'as' => 'api.v1.signin',
 			'uses' => 'ApiGuestController@postSignIn'
 		]);
 
+		/**
+		* Answer Riddle
+		* url: /api/v1/answer
+		*/
+		Route::post('/answer', [
+			'as' => 'api.v1.answer',
+			'uses' => 'ApiRiddleController@postAnswer'
+		]);
 	});
 });
