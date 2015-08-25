@@ -38,7 +38,7 @@ class ApiGuestController extends BaseApiController
 		else
 		{
 			self::$error   = 5000;
-			self::$message = "Sign In Error: Cannot validate inputted data.";
+			self::$message = trans('guest.signin.invalid_parameter');
 			self::$data    = \Input::all();
 		}
 
@@ -68,7 +68,7 @@ class ApiGuestController extends BaseApiController
 		else
 		{
 			self::$error   = 5000;
-			self::$message = "Register Error: Cannot validate inputted data.";
+			self::$message = trans('guest.register.invalid_parameter');
 			self::$data    = \Input::all();
 		}
 

@@ -16,7 +16,7 @@ class ApiSystemController extends BaseApiController
 
 		return self::response([
 			'error' => 0,
-			'message' => "Listed available APIs.",
+			'message' => trans('system.routes.list'),
 			'data' => $registeredApis
 		]);
 	}

@@ -13,6 +13,11 @@ class ApiRiddleController extends BaseApiController
 		'answer' => 'required',
 	];
 
+	private static $statuses = [
+		'riddle_solved' => 'solved',
+		'riddle_not_solved' => 'unsolved',
+	];
+
 	/**
 	 * Answer Riddle
 	 * @return 0 ONLY if Success.
@@ -46,43 +51,43 @@ class ApiRiddleController extends BaseApiController
 						# # # # Success!
 						if (!empty($riddle->answer) && (strtolower($riddle->answer) == strtolower($inputData['answer'])))
 						{
-							self::$message = "Awesome! You're answer is correct. Congratulation! \xF0\x9F\x91\x8D";
-							$inputData['status'] = 'solved';
+							self::$message = trans('riddle.answer.correct');
+							$inputData['status'] = self::$statuses['riddle_solved'];
 							self::$data    = $inputData;
 						}
 						else
 						{
 							self::$error = 1;
-							self::$message = "Sorry, wrong answer!";
-							$inputData['status'] = 'unsolved';
+							self::$message = trans('riddle.answer.wrong');
+							$inputData['status'] = self::$statuses['riddle_not_solved'];
 							self::$data    = $inputData;
 						}
 					}
 					else
 					{
 						self::$error   = 5000;
-						self::$message = "Answer Error: Guest doesn't have riddle, sign in first.";
+						self::$message = trans('riddle.answer.guest_no_riddle');
 						self::$data    = $inputData;
 					}
 				}
 				else
 				{
 					self::$error   = 5000;
-					self::$message = "Answer Error: Invalid riddle id.";
+					self::$message = trans('riddle.answer.invalid_riddle');
 					self::$data    = $inputData;
 				}
 			}
 			else
 			{
 				self::$error   = 5000;
-				self::$message = "Answer Error: Invalid guest or guest is not registered.";
+				self::$message = trans('riddle.answer.invalid_guest');
 				self::$data    = $inputData;
 			}
 		}
 		else
 		{
 				self::$error   = 5000;
-				self::$message = "Answer Error: Parameters validation failed.";
+				self::$message = trans('riddle.answer.invalid_parameter');
 				self::$data    = $inputData;
 		}
 
