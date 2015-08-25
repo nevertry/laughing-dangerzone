@@ -107,4 +107,9 @@ class Riddle extends \Eloquent {
 
 		# POPULATE_POOLS: truncate table, insert Every_Riddles into Riddle_Pools.
 	}
+
+	public static function getPublishedRiddleIds()
+	{
+		return self::select('id')->where('publish_status', '=', 1)->get()->keyBy('id');
+	}
 }
