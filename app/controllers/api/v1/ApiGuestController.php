@@ -31,6 +31,10 @@ class ApiGuestController extends BaseApiController
 			# Found existing guest.
 			else
 			{
+				// Check guest's riddle validity.
+				$guest = \Guest::checkAssignedRiddle($guest);
+
+				// Prepare data to return.
 				self::$data    = $guest;
 			}
 		}

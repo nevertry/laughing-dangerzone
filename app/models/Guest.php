@@ -30,7 +30,7 @@ class Guest extends \Eloquent {
 		# Set Riddle on initial create
 		static::creating(function($guest) use ($guestModel)
 		{
-			$guest->riddle_id = $guestModel->assignRiddle($guest);
+			$guest->riddle_id = $guestModel->getRiddleId($guest);
 		});
 	}
 	/**** Event Listener : End ****/
@@ -86,7 +86,19 @@ class Guest extends \Eloquent {
 		return $guest;
 	}
 
-	public static function assignRiddle($guest)
+	public static function checkAssignedRiddle($guest)
+	{
+		if (empty($guest->riddle_id))
+		{
+			$guest->riddle_id = self::getRiddleId($guest);
+		}
+
+		$guest->save();
+		
+		return $guest;
+	}
+
+	public static function getRiddleId($guest)
 	{
 		# Check riddle_id, if empty/null then ::setRiddle()
 		if (empty($guest->riddle_id))
