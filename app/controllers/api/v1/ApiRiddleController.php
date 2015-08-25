@@ -51,14 +51,14 @@ class ApiRiddleController extends BaseApiController
 						// // // // Success!
 						if (!empty($riddle->answer) && (strtolower($riddle->answer) == strtolower($inputData['answer'])))
 						{
-							self::$message = trans('riddle.answer.correct');
+							self::$message = trans('codeapi.riddle.answer.correct');
 							$inputData['status'] = self::$statuses['riddle_solved'];
 							self::$data    = $inputData;
 						}
 						else
 						{
 							self::$error = 1;
-							self::$message = trans('riddle.answer.wrong');
+							self::$message = trans('codeapi.riddle.answer.wrong');
 							$inputData['status'] = self::$statuses['riddle_not_solved'];
 							self::$data    = $inputData;
 						}
@@ -66,28 +66,28 @@ class ApiRiddleController extends BaseApiController
 					else
 					{
 						self::$error   = 5000;
-						self::$message = trans('riddle.answer.guest_no_riddle');
+						self::$message = trans('codeapi.riddle.answer.guest_no_riddle');
 						self::$data    = $inputData;
 					}
 				}
 				else
 				{
 					self::$error   = 5000;
-					self::$message = trans('riddle.answer.invalid_riddle');
+					self::$message = trans('codeapi.riddle.answer.invalid_riddle');
 					self::$data    = $inputData;
 				}
 			}
 			else
 			{
 				self::$error   = 5000;
-				self::$message = trans('riddle.answer.invalid_guest');
+				self::$message = trans('codeapi.riddle.answer.invalid_guest');
 				self::$data    = $inputData;
 			}
 		}
 		else
 		{
 				self::$error   = 5000;
-				self::$message = trans('riddle.answer.invalid_parameter');
+				self::$message = trans('codeapi.riddle.answer.invalid_parameter');
 				self::$data    = $inputData;
 		}
 

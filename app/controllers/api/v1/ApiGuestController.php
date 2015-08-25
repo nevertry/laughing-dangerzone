@@ -48,7 +48,7 @@ class ApiGuestController extends BaseApiController
 		else
 		{
 			self::$error   = 5000;
-			self::$message = trans('guest.signin.invalid_parameter');
+			self::$message = trans('codeapi.guest.signin.invalid_parameter');
 			self::$data    = \Input::all();
 		}
 
@@ -78,7 +78,7 @@ class ApiGuestController extends BaseApiController
 		else
 		{
 			self::$error   = 5000;
-			self::$message = trans('guest.register.invalid_parameter');
+			self::$message = trans('codeapi.guest.register.invalid_parameter');
 			self::$data    = \Input::all();
 		}
 
