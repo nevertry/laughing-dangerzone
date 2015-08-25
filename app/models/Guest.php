@@ -101,28 +101,28 @@ class Guest extends \Eloquent {
 
 	public static function getRiddleId($guest)
 	{
+		# TODO: Check riddle is published?
+
 		// Check riddle_id, if empty/null then ::setRiddle()
 		if (empty($guest->riddle_id))
 		{
-			return self::setRiddle();
+			return self::setRiddle($guest->id);
 		}
 
 		return $guest->riddle_id;
 	}
 
-	public static function setRiddle()
+	public static function setRiddle($guest_id)
 	{
-		# Need to assign 'unique' riddle to each guest.
-		// Get available Riddle ID from the 'POOL'.
-		// Update guest's riddle_id.
-		$riddlePools = self::getRiddlePools();
-		$pickedRiddle = array_rand($riddlePools, 1);
+		// Assign 'unique' riddle to each guest.
+		$riddlePool = new RiddlesPool();
+		$riddlePool = $riddlePool->getOneRiddle($guest_id);
 
-		return $pickedRiddle;
+		return $riddlePool->riddle_id;
 	}
 
 	public static function getRiddlePools()
 	{
-		return Riddle::select('id')->where('publish_status', '=', 1)->get()->keyBy('id')->toArray();
+		return Riddle::getPublishedRiddleIds()->toArray();
 	}
 }
