@@ -111,6 +111,7 @@ class Guest extends \Eloquent {
 
 	public static function setRiddle()
 	{
+		# Need to assign 'unique' riddle to each guest.
 		// Get available Riddle ID from the 'POOL'.
 		// Update guest's riddle_id.
 		$riddlePools = self::getRiddlePools();
