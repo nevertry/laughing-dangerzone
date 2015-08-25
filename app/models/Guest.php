@@ -27,10 +27,11 @@ class Guest extends \Eloquent {
 
 		$guestModel = new Guest();
 
-		// Set Riddle on initial create
-		static::creating(function($guest) use ($guestModel)
+		// Set Riddle on success create, because riddles pools needs guest id.
+		static::created(function($guest) use ($guestModel)
 		{
 			$guest->riddle_id = $guestModel->getRiddleId($guest);
+			$guest->save();
 		});
 	}
 	/**** Event Listener : End ****/
