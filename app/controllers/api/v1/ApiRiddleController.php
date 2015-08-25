@@ -35,20 +35,20 @@ class ApiRiddleController extends BaseApiController
 
 		if ($validate->passes())
 		{
-			# Retrieve User data to get riddle id.
+			// Retrieve User data to get riddle id.
 			$guest = \Guest::whereEmail($inputData['email'])->first();
 			if ($guest)
 			{
-				# Check user riddle id with given riddle id.
+				// Check user riddle id with given riddle id.
 
 				if (!empty($guest->riddle_id) && ($guest->riddle_id == $inputData['riddle_id']))
 				{
 					$riddle = \Riddle::whereId($guest->riddle_id)->first();
 					if ($riddle)
 					{
-						# # IF equal, get Riddle with answer
-						# # # IF riddle_answer = given_answer
-						# # # # Success!
+						// // IF equal, get Riddle with answer
+						// // // IF riddle_answer = given_answer
+						// // // // Success!
 						if (!empty($riddle->answer) && (strtolower($riddle->answer) == strtolower($inputData['answer'])))
 						{
 							self::$message = trans('riddle.answer.correct');

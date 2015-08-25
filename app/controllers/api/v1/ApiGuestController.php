@@ -17,18 +17,18 @@ class ApiGuestController extends BaseApiController
 			'email' => \Input::get('email')
 		];
 
-		# Validate Inputted Data
+		// Validate Inputted Data
 		$validate = \Guest::validate($inputData);
 		if ($validate->passes())
 		{
 			$guest = \Guest::getOneByEmail($inputData['email']);
 
-			# Register a new guest.
+			// Register a new guest.
 			if (!$guest)
 			{
 				return $this->postRegister();
 			}
-			# Found existing guest.
+			// Found existing guest.
 			else
 			{
 				// Check guest's riddle validity.
@@ -38,7 +38,7 @@ class ApiGuestController extends BaseApiController
 				self::$data    = $guest;
 			}
 		}
-		# Cannot validate inputted Data
+		// Cannot validate inputted Data
 		else
 		{
 			self::$error   = 5000;
@@ -61,14 +61,14 @@ class ApiGuestController extends BaseApiController
 			'email' => \Input::get('email'),
 		];
 
-		# Validate Inputted Data, make sure this guest is fresh.
+		// Validate Inputted Data, make sure this guest is fresh.
 		$validate = \Guest::validateToCreate($inputData);
 		if ($validate->passes())
 		{
 			$guest = \Guest::create($inputData);
 			self::$data    = $guest;
 		}
-		# Cannot validate inputted Data
+		// Cannot validate inputted Data
 		else
 		{
 			self::$error   = 5000;

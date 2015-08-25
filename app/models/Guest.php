@@ -27,7 +27,7 @@ class Guest extends \Eloquent {
 
 		$guestModel = new Guest();
 
-		# Set Riddle on initial create
+		// Set Riddle on initial create
 		static::creating(function($guest) use ($guestModel)
 		{
 			$guest->riddle_id = $guestModel->getRiddleId($guest);
@@ -100,7 +100,7 @@ class Guest extends \Eloquent {
 
 	public static function getRiddleId($guest)
 	{
-		# Check riddle_id, if empty/null then ::setRiddle()
+		// Check riddle_id, if empty/null then ::setRiddle()
 		if (empty($guest->riddle_id))
 		{
 			return self::setRiddle();
@@ -111,8 +111,8 @@ class Guest extends \Eloquent {
 
 	public static function setRiddle()
 	{
-		# Get available Riddle ID from the 'POOL'.
-		# Update guest's riddle_id.
+		// Get available Riddle ID from the 'POOL'.
+		// Update guest's riddle_id.
 		$riddlePools = self::getRiddlePools();
 		$pickedRiddle = array_rand($riddlePools, 1);
 

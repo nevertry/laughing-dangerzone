@@ -126,7 +126,7 @@ class RiddlesController extends \BaseController {
 
 		if ($validate->passes())
 		{
-			# Check with existing data
+			// Check with existing data
 			if ($id != $riddle_data['id'])
 			{
 				return Redirect::route('dashboard.riddles.index')
@@ -134,8 +134,8 @@ class RiddlesController extends \BaseController {
 					->withInput(Input::all());
 			}
 
-			# Otherwise: OK
-			# Get old data first
+			// Otherwise: OK
+			// Get old data first
 			$riddle = Riddle::find($riddle_data['id']);
 
 			$riddle->type = $riddle_data['type'];
@@ -145,10 +145,10 @@ class RiddlesController extends \BaseController {
 			$riddle->clues = $riddle_data['clues'];
 			$riddle->publish_status = $riddle_data['publish_status'];
 
-			# Update old data
+			// Update old data
 			$riddle->save();
 
-			# Set session for informational purpose
+			// Set session for informational purpose
 			Session::flash('info', "Riddle #{$id} updated!");
 		}
 		else
@@ -170,17 +170,17 @@ class RiddlesController extends \BaseController {
 	{
 		if (!empty($id))
 		{
-			# Do Delete
+			// Do Delete
 			$affectedRows = Riddle::where('id', $id)->delete();
 
 			if ($affectedRows)
 			{
-				# Set info once
+				// Set info once
 				Session::flash('info', "Riddle #{$id} deleted!");
 			}
 			else
 			{
-				# Set info once
+				// Set info once
 				Session::flash('info', "Riddle #{$id} not found. No riddle deleted.");
 			}
 		}
