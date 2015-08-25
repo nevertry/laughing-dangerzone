@@ -36,6 +36,12 @@ class ApiGuestController extends BaseApiController
 
 				// Prepare data to return.
 				self::$data    = $guest;
+
+				// Message update for existing user.
+				if ($inputData != $guest->name)
+				{
+					self::$message = trans('codeapi.guest.signin.success_name_different', ['attr_name' => $guest->name]);
+				}
 			}
 		}
 		// Cannot validate inputted Data

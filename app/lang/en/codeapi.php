@@ -6,6 +6,7 @@ return array(
 
 	# Guest
 	# # Sign In
+	'guest.signin.success_name_different' => "Success, continuing session. Registered name: :attr_name",
 	'guest.signin.invalid_parameter' => "Sign In Error: Cannot validate inputted data.",
 	# # Register
 	'guest.register.invalid_parameter' => "Register Error: Cannot validate inputted data.",
