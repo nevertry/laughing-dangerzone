@@ -16,16 +16,21 @@
                                 {{ Form::open(array('action' => 'dashboard.settings.update', 'role' => 'form')) }}
                                     {{ Form::hidden('setting_name', $setting_name) }}
                                     <div class="box-body">
-                                        @if ($setting->name == $setting_name)
-                                            @foreach (json_decode($setting->meta_data) as $meta_key => $meta_detail)
-                                                @if ($meta_detail->type == 'text')
-                                                    <div class="form-group">
-                                                        <label for="{{ $meta_key }}">{{ $meta_detail->label }}</label>
-                                                        <input type="text" class="form-control" id="{{ $meta_key }}" name="{{ $meta_key }}" placeholder="{{ $meta_detail->tip }}" value="{{ $meta_detail->value }}">
-                                                    </div>
-                                                @endif
-                                            @endforeach
+                                    @forelse ($settings as $k_setting => $setting)
+                                        @if (!in_array($k_setting, $settings_excluded))
+                                        {{ XForm::generate([
+                                                'name'        => $k_setting,
+                                                'type'        => $setting['type'],
+                                                'label'       => $setting['label'],
+                                                'value'       => ifset($setting['value'], $setting['default']),
+                                                'class'       => "form-control",
+                                                'placeholder' => $setting['placeholder'],
+                                                'tip'         => ifset($setting['tip']),
+                                            ]); }}
                                         @endif
+                                    @empty
+                                        No Setting found.
+                                    @endforelse
                                     </div><!-- /.box-body -->
 
                                     <div class="box-footer">

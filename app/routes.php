@@ -79,10 +79,11 @@ Route::group(['prefix' => 'dashboard', 'before' => 'theme.backend|auth.sentry|ha
 		Route::get('/', function() {
 			return Redirect::route('dashboard.settings.app');
 		});
-		Route::get('app', ['as' => 'dashboard.settings.app', 'uses' => 'SettingController@showAppIndex']);
+		// Route::get('app', ['as' => 'dashboard.settings.app', 'uses' => 'SettingController@showAppIndex']);
+		Route::get('app', ['as' => 'dashboard.settings.app', 'uses' => 'XAppController@getIndex']);
 
 		// Settings Update
-		Route::post('app', ['as' => 'dashboard.settings.update', 'uses' => 'SettingController@postApp']);
+		Route::post('app', ['as' => 'dashboard.settings.update', 'uses' => 'XAppController@postIndex']);
 	});
 
 	# Pokemon (blocked)

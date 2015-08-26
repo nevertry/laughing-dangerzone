@@ -205,7 +205,7 @@ function form_element_set($data, $data_key)
 			break;
 	}
 
-    return $ret;
+	return $ret;
 }
 
 function prependFirstArray($initial_array=array(), $first_array=array())
@@ -221,4 +221,98 @@ function prependChar($string, $char=' ', $many=1)
 		$string = $char . $string;
 	}
 	return $string;
+}
+
+/**
+ * Check for invalid formed json.
+ *
+ * @return false if no errors.
+ */
+function isNotJson($string)
+{
+	// decode the JSON data
+	$result = json_decode($string);
+
+	// switch and check possible JSON errors
+	switch (json_last_error()) {
+		case JSON_ERROR_NONE:
+			$error = false; // JSON is valid // No error has occurred
+			break;
+		case JSON_ERROR_DEPTH:
+			$error = 'The maximum stack depth has been exceeded.';
+			break;
+		case JSON_ERROR_STATE_MISMATCH:
+			$error = 'Invalid or malformed JSON.';
+			break;
+		case JSON_ERROR_CTRL_CHAR:
+			$error = 'Control character error, possibly incorrectly encoded.';
+			break;
+		case JSON_ERROR_SYNTAX:
+			$error = 'Syntax error, malformed JSON.';
+			break;
+		// PHP >= 5.3.3
+		case JSON_ERROR_UTF8:
+			$error = 'Malformed UTF-8 characters, possibly incorrectly encoded.';
+			break;
+		// PHP >= 5.5.0
+		case JSON_ERROR_RECURSION:
+			$error = 'One or more recursive references in the value to be encoded.';
+			break;
+		// PHP >= 5.5.0
+		case JSON_ERROR_INF_OR_NAN:
+			$error = 'One or more NAN or INF values in the value to be encoded.';
+			break;
+		case JSON_ERROR_UNSUPPORTED_TYPE:
+			$error = 'A value of a type that cannot be encoded was given.';
+			break;
+		default:
+			$error = 'Unknown JSON error occured.';
+			break;
+	}
+
+	return $error;
+}
+
+/**
+ * Combine user attributes with known attributes and fill in defaults when needed.
+ *
+ * @param array $pairs Entire list of supported attributes and their defaults.
+ * @param array $atts User defined attributes in shortcode tag.
+ * @return array $out Combined and filtered attribute list.
+ */
+function arrayPairs($pairs, $atts)
+{
+	$atts = (array)$atts;
+	$out = array();
+	foreach($pairs as $name => $default) {
+		if ( array_key_exists($name, $atts) )
+			$out[$name] = $atts[$name];
+		else
+			$out[$name] = $default;
+	}
+	return $out;
+}
+
+/**
+ * Generate slug from a string.
+ *
+ * @param string $str excluding attribute.
+ * @param array $replace array of strings.
+ * @param string $delimiter.
+ * @return string clean string.
+ */
+function wordSlugger($str, $replace=array(), $delimiter='_') {
+	// use locale ?
+	// setlocale(LC_ALL, 'en_US.UTF8');
+
+	if( !empty($replace) ) {
+		$str = str_replace((array)$replace, ' ', $str);
+	}
+
+	$clean = iconv('UTF-8', 'ASCII//TRANSLIT', $str);
+	$clean = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $clean);
+	$clean = strtolower(trim($clean, '-'));
+	$clean = preg_replace("/[\/_|+ -]+/", $delimiter, $clean);
+
+	return $clean;
 }

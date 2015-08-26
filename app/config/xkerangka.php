@@ -14,6 +14,19 @@ return array(
 					'value'		=> 'Xkerangka',
 					'default'	=> 'Xkerangka'
 				],
+			],
+			'_app' => [
+				'_app_name' => [
+					'type'        => 'text',
+					'label'       => 'Nama App',
+					'placeholder' => 'Masukkan Nama Aplikasi',
+					'default'     => 'Xkerangka'
+				],
+				'_app_title' => [
+					'label'       => 'Judul App',
+					'placeholder' => 'Masukkan Judul Aplikasi',
+					'default'     => 'XKerangka',
+				]
 			]
 		]
 
