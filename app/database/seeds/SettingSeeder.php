@@ -15,7 +15,7 @@ class SettingSeeder extends Seeder {
 
 		foreach ($settings as $setting_name => $setting_value)
 		{
-			Setting::create([
+			XApp::create([
 				'name' => $setting_name,
 				'meta_data' => json_encode($setting_value),
 			]);
