@@ -1,6 +1,6 @@
 <?php
 
-class XAppController extends \BaseController {
+class SettingController extends \BaseController {
 
 	private static $pageinfo;
 
