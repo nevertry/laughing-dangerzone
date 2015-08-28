@@ -148,4 +148,25 @@ class XApp extends \Eloquent {
 		return $arraySettings;
 	}
 
+	/**
+	 * Return XApp config value or revert to config's value (config file .php).
+	 *
+	 * @param string Name of settings key in database.
+	 * @param string Value of setting.
+	 */
+	public static function getOrConfig($keyName)
+	{
+		return ifset(self::get($keyName), Config::get(self::$config_prefix.'._app.'.$keyName.'.default'));
+	}
+
+	/**
+	 * Return XApp config value or revert to default's value (DB).
+	 *
+	 * @param string $keyName Name of settings key in database.
+	 * @param string Value of setting.
+	 */
+	public static function getOrDefault($keyName)
+	{
+		return ifset(XApp::get($keyName), XApp::get($keyName.'_default'));
+	}
 }

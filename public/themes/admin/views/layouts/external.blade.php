@@ -2,7 +2,7 @@
 <html class="lockscreen">
     <head>
         <meta charset="UTF-8">
-        <title>{{ Config::get('xkerangka.app.title') }}</title>
+        <title>{{ XApp::getOrConfig('_app_title') }}</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         {{ HTML::style(Theme::asset('css/bootstrap.min.css')) }}
         {{ HTML::style(Theme::asset('css/font-awesome.min.css')) }}

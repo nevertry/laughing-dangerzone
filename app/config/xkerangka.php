@@ -20,7 +20,7 @@ return array(
 					'type'        => 'text',
 					'label'       => 'Nama App',
 					'placeholder' => 'Masukkan Nama Aplikasi',
-					'default'     => 'Xkerangka'
+					'default'     => 'Xkerangka App'
 				],
 				'_app_title' => [
 					'label'       => 'Judul App',

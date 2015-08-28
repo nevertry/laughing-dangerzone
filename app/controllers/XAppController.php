@@ -38,7 +38,7 @@ class XAppController extends \BaseController {
 			'pageinfo' => self::$pageinfo,
 			'setting_name' => $setting_name,
 			'settings' => $settings,
-			'settings_excluded' => ['_app_title']
+			'settings_excluded' => [], //['_app_title']
 		]);
 	}
 
