@@ -118,7 +118,19 @@ class Guest extends \Eloquent {
 		$riddlePool = new RiddlesPool();
 		$riddlePool = $riddlePool->getOneRiddle($guest_id);
 
-		return $riddlePool->riddle_id;
+		$riddle_id = null;
+
+		if ($riddlePool)
+		{
+			$riddle_id = $riddlePool->riddle_id;
+			Log::info('setRiddle: Found riddle candidate, id: '.$riddle_id);
+		}
+		else
+		{
+			Log::info('setRiddle: Cannot found riddle candidate id');
+		}
+
+		return $riddle_id;
 	}
 
 	public static function getRiddlePools()

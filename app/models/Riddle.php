@@ -110,6 +110,8 @@ class Riddle extends \Eloquent {
 
 	public static function getPublishedRiddleIds()
 	{
+		Log::info('getPublishedRiddleIds: Getting published riddle ids...');
+
 		return self::select('id')->where('publish_status', '=', 1)->get()->keyBy('id');
 	}
 }

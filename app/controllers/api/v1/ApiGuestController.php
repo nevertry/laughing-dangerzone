@@ -37,10 +37,20 @@ class ApiGuestController extends BaseApiController
 				// Prepare data to return.
 				self::$data    = $guest;
 
+				if (empty($guest->riddle_id))
+				{
+					self::$error   = 5000;
+					self::$message = trans('codeapi.guest.signin.cannot_find_riddle');
+				}
 				// Message update for existing user.
-				if ($inputData != $guest->name)
+				elseif ($inputData != $guest->name)
 				{
 					self::$message = trans('codeapi.guest.signin.success_name_different', ['attr_name' => $guest->name]);
+				}
+				// Nothing wrong.
+				else
+				{
+
 				}
 			}
 		}
@@ -72,7 +82,17 @@ class ApiGuestController extends BaseApiController
 		if ($validate->passes())
 		{
 			$guest = \Guest::create($inputData);
-			self::$data    = $guest;
+
+			if (empty($guest->riddle_id))
+			{
+				self::$error   = 5000;
+				self::$message = trans('codeapi.guest.signin.cannot_find_riddle');
+				self::$data    = $guest;
+			}
+			else
+			{
+				self::$data    = $guest;
+			}
 		}
 		// Cannot validate inputted Data
 		else

@@ -49,6 +49,12 @@ class RiddlesPool extends \Eloquent {
 		// Get available riddles ids
 		$publishedRiddles = Riddle::getPublishedRiddleIds();
 
+		if (count($publishedRiddles) <= 0)
+		{
+			Log::info('populatePool: No published riddles found.');			
+			return false;
+		}
+
 		// Check for buffer loop
 		if ($buffer <= $this->pool_buffer)
 		{
@@ -63,6 +69,8 @@ class RiddlesPool extends \Eloquent {
 			// Generate new pool
 			$newPool = self::generatePool($newPoolId, $publishedRiddles);
 		}
+
+		return true;
 	}
 
 	/**
@@ -70,6 +78,8 @@ class RiddlesPool extends \Eloquent {
 	 */
 	public function getOneRiddle($guestId)
 	{
+		Log::info('getOneRiddle: Getting one riddle for guest: '.$guestId);
+
 		$riddleId = 0;
 		$poolId = $this->getOpenPoolId();
 		$riddlesPools = array();
@@ -113,6 +123,8 @@ class RiddlesPool extends \Eloquent {
 
 	public function getOneRandomizedRiddle($guestId, $riddlesPools)
 	{
+		Log::info('getOneRandomizedRiddle: Using randomized method.');
+
 		$riddlesPools = $riddlesPools->toArray();
 		$randomRiddleId = array_rand($riddlesPools, 1);
 
@@ -123,6 +135,8 @@ class RiddlesPool extends \Eloquent {
 
 	public function getOneSequencedRiddle($guestId, $riddlesPools)
 	{
+		Log::info('getOneRandomizedRiddle: Using sequenced method.');
+
 		$pickedRiddlePool = $riddlesPools->first();
 
 		return $pickedRiddlePool;
@@ -149,6 +163,7 @@ class RiddlesPool extends \Eloquent {
 
 	public function getNewPoolId()
 	{
+		Log::info('getNewPoolId: Getting new Pool Group ID...');
 		$newId = 1;
 
 		// Get highest pool id with value higher than $lastId (0)
@@ -158,6 +173,8 @@ class RiddlesPool extends \Eloquent {
 		{
 			$newId = $lastId + 1;
 		}
+
+		Log::info('getNewPoolId: Setting new Pool Group ID: '.$newId);
 
 		return $newId;
 	}
@@ -169,11 +186,12 @@ class RiddlesPool extends \Eloquent {
 	 */
 	public function getOpenPoolId($retry_loop=0)
 	{
-		Log::info('Attempt RiddlesPools->getOpenPoolId('.$retry_loop.')');
+		Log::info('getOpenPoolId: Attempt try ('.$retry_loop.')');
 
 		# Check loop limitation.
 		if ($retry_loop > $this->max_retry_loop)
 		{
+			Log::info('getOpenPoolId: Max attempt ('.$retry_loop.') reached!');
 			return false;
 		}
 
@@ -189,6 +207,7 @@ class RiddlesPool extends \Eloquent {
 		# Riddle unavailable! Generate NOW!
 		else
 		{
+			Log::info('getOpenPoolId: Pool not found. Trying to generate...');
 			// Generate new pools, hoping there are any riddles.
 			$this->populatePool();
 
@@ -218,6 +237,8 @@ class RiddlesPool extends \Eloquent {
 
 	public function generatePool($poolId, $riddles)
 	{
+		Log::info('generatePool: Generating new pool...');
+
 		$created_pool = [];
 
 		foreach ($riddles as $k_riddle => $riddle) {
@@ -234,6 +255,15 @@ class RiddlesPool extends \Eloquent {
 			array_push($created_pool, $poolId);
 		}
 
+		if (!empty($created_pool))
+		{
+			Log::info('generatePool: New pool generated successfully.');
+		}
+		else
+		{
+			Log::info('generatePool: Unable to generate pool!');
+		}
+		
 		return $created_pool;
 	}
 }

@@ -19,7 +19,7 @@ class RiddleSeeder extends Seeder {
 					'question' => 'Name an instrument.',
 					'answer' => 'GUITAR',
 					'clues' => 'G1,U2,I3,T4,A5,R6',
-					'publish_status' => "0",
+					'publish_status' => "1",
 				],
 				[
 					'type' => 'image',
@@ -27,7 +27,7 @@ class RiddleSeeder extends Seeder {
 					'question' => 'What is the main color of the body of the figure?',
 					'answer' => 'RED',
 					'clues' => 'R1,E2,D3',
-					'publish_status' => "0",
+					'publish_status' => "1",
 				],
 				[
 					'type' => 'video',
@@ -35,7 +35,7 @@ class RiddleSeeder extends Seeder {
 					'question' => 'How many strings this instrument had?',
 					'answer' => 'SIX',
 					'clues' => 'S1,I2,X3',
-					'publish_status' => "0",
+					'publish_status' => "1",
 				],
 				[
 					'type' => 'audio',
@@ -43,7 +43,7 @@ class RiddleSeeder extends Seeder {
 					'question' => 'In musical notes, C also known as ...?',
 					'answer' => 'DO',
 					'clues' => 'D1,O2',
-					'publish_status' => "0",
+					'publish_status' => "1",
 				],
 			],
 		];

@@ -8,6 +8,7 @@ return array(
 	# # Sign In
 	'guest.signin.success_name_different' => "Success, continuing session. Registered name: :attr_name",
 	'guest.signin.invalid_parameter' => "Sign In Error: Cannot validate inputted data.",
+	'guest.signin.cannot_find_riddle' => "Registration complete, but cannot find riddle.",
 	# # Register
 	'guest.register.invalid_parameter' => "Register Error: Cannot validate inputted data.",
 
