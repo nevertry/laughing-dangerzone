@@ -58,10 +58,17 @@ Route::group(['prefix' => 'dashboard', 'before' => 'theme.backend|auth.sentry|ha
 	# Guests
 	Route::group(['prefix' => 'guests', 'before' => 'hasAccess:guests'], function () {
 		// Guests Index
-		Route::get('/', function() {
+		Route::get('/', ['as'=>'dashboard.guests', 'uses' => function() {
 			return Redirect::route('dashboard.guests.index');
-		});
+		}]);
 		Route::get('index', ['as' => 'dashboard.guests.index', 'uses' => 'GuestsController@showIndex']);
+
+		// Guest Edit
+		Route::get('{id?}/edit', ['as' => 'dashboard.guests.edit', 'uses' => 'GuestsController@getEdit']);
+		Route::post('{id?}/edit', ['as' => 'dashboard.guests.edit', 'uses' => 'GuestsController@postEdit']);
+
+		// Guest Delete
+		Route::post('{id?}/delete', ['as' => 'dashboard.guests.delete', 'uses' => 'GuestsController@getDelete']);
 	});
 
 	# Charmaps : Letter-Symbol Mapping

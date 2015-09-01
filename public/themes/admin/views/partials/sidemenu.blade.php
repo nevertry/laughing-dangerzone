@@ -48,7 +48,6 @@
     </li>
     @endif
 
-<!--
     @if (has_permission('guests'))
     <li class="treeview {{ setActiveMenuClass('guests', $pageinfo['menu']) }}">
         <a href="#">
@@ -64,7 +63,7 @@
         </ul>
     </li>
     @endif
-
+<!--
     @if (has_permission('charmaps'))
     <li class="treeview {{ setActiveMenuClass('charmaps', $pageinfo['menu']) }}">
         <a href="#">
