@@ -153,3 +153,34 @@ Route::group(['prefix' => 'api', 'namespace' => 'Api\v1'], function() {
 		]);
 	});
 });
+
+/*
+|--------------------------------------------------------------------------
+| AJAX Routes V1
+|--------------------------------------------------------------------------
+*/
+Route::group(['prefix' => 'ajax', 'namespace' => 'Ajax\v1', 'before' => 'auth.sentry|hasAccess:dashboard'], function() {
+	/**
+	* Route for AJAX version 1.
+	* url: /ajax/v1
+	*/
+	Route::group(['prefix' => 'v1'], function() {
+		/**
+		* Riddle
+		* url: /ajax/v1/riddle/count
+		*/
+		Route::get('/riddle/count', [
+			'as' => 'ajax.v1.dashboard.riddle.count',
+			'uses' => 'AjaxDashboardController@getRiddleCount'
+		]);
+
+		/**
+		* Guest
+		* url: /ajax/v1/guest/count
+		*/
+		Route::get('/guest/count', [
+			'as' => 'ajax.v1.dashboard.guest.count',
+			'uses' => 'AjaxDashboardController@getGuestCount'
+		]);
+	});
+});
