@@ -78,6 +78,10 @@ Route::group(['prefix' => 'dashboard', 'before' => 'theme.backend|auth.sentry|ha
 			return Redirect::route('dashboard.charmaps.index');
 		});
 		Route::get('index', ['as' => 'dashboard.charmaps.index', 'uses' => 'CharmapsController@showIndex']);
+
+		// Charmap Edit
+		Route::get('{letter?}/edit', ['as' => 'dashboard.charmaps.edit', 'uses' => 'CharmapsController@getEdit']);
+		Route::post('{letter?}/edit', ['as' => 'dashboard.charmaps.edit', 'uses' => 'CharmapsController@postEdit']);
 	});
 
 	# Settings
