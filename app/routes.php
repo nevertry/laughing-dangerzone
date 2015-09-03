@@ -131,6 +131,7 @@ Route::group(['prefix' => 'api', 'namespace' => 'Api\v1'], function() {
 		* url: /api/v1
 		*/
 		Route::get('/', [
+			'as' => 'api.v1',
 			'uses' => 'ApiSystemController@getReources'
 		]);
 

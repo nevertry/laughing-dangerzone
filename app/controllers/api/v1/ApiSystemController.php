@@ -10,14 +10,20 @@ class ApiSystemController extends BaseApiController
 	public function getReources()
 	{
 		$registeredApis = [
-			'signin' => ['method' => 'post', 'route' => route('api.v1.signin')],
-			'answer' => ['method' => 'post', 'route' => route('api.v1.answer')],
+			'signin' => [
+				'method' => 'post',
+				'route' => route('api.v1.signin'),
+				'description' => 'Guest to sign in and get a riddle.'],
+			'answer' => [
+				'method' => 'post',
+				'route' => route('api.v1.answer'),
+				'description' => 'Guest to answer riddle'],
 		];
 
-		return self::response([
-			'error' => 0,
-			'message' => trans('codeapi.system.routes.list'),
-			'data' => $registeredApis
-		]);
+		self::$error = 0;
+		self::$message = trans('codeapi.system.routes.list');
+		self::$data = $registeredApis;
+
+		return self::response();
 	}
 }
