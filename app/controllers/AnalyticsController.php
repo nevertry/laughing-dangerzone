@@ -1,7 +1,5 @@
 <?php
 
-use Lang;
-
 class AnalyticsController extends \BaseController {
 
 	private static $pageinfo;

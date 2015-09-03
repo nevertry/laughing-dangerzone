@@ -5,14 +5,29 @@
  *
  * @param mixed $var Variable to print.
  */
-function printvar($var, $dump=false)
+function printvar($var, $dump_method=0)
 {
 	echo '<pre>';
 
-	if ($dump)
-		var_dump($var);
-	else
-		print_r($var);
+	switch ($dump_method) {
+		case 1:
+			var_dump($var);
+			break;
+		case 11:
+			echo '<xmp>';
+			var_dump($var);
+			echo '</xmp>';
+			break;
+		case 10:
+			echo '<xmp>';
+			print_r($var);
+			echo '</xmp>';
+			break;
+		case 0:
+		default:
+			print_r($var);
+			break;
+	}
 
 	echo '</pre>';
 }
