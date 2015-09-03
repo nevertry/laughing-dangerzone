@@ -65,6 +65,17 @@ class Riddle extends \Eloquent {
 		return self::$allowed_publish_status;
 	}
 
+	public static function getStatusIdByText($status)
+	{
+		foreach (self::$allowed_publish_status as $key => $value) {
+			if (strtolower($value) == strtolower($status))
+			{
+				return $key;
+			}
+		}
+		return -1;
+	}
+
 	public static function validate($data, $external_rules=array())
 	{
 		$rules = (count($external_rules)) ? $external_rules : self::$rules;
@@ -113,5 +124,15 @@ class Riddle extends \Eloquent {
 		Log::info('getPublishedRiddleIds: Getting published riddle ids...');
 
 		return self::select('id')->where('publish_status', '=', 1)->get()->keyBy('id');
+	}
+
+	public static function getCount($status='Published')
+	{
+		if (strtolower($status) == 'all')
+		{
+			return self::count();
+		}
+
+		return self::where('publish_status', '=', self::getStatusIdByText($status))->count();
 	}
 }

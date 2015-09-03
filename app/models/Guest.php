@@ -36,6 +36,17 @@ class Guest extends \Eloquent {
 	}
 	/**** Event Listener : End ****/
 
+	public static function getStatusIdByText($status)
+	{
+		foreach (self::$allowed_status as $key => $value) {
+			if (strtolower($value) == strtolower($status))
+			{
+				return $key;
+			}
+		}
+		return -1;
+	}
+
 	public function getRiddleAttribute($value)
 	{
 		return $this->riddle_data();
@@ -137,4 +148,15 @@ class Guest extends \Eloquent {
 	{
 		return Riddle::getPublishedRiddleIds()->toArray();
 	}
+
+	public static function getCount($status='Registered Guest')
+	{
+		if (strtolower($status) == 'all')
+		{
+			return self::count();
+		}
+
+		return self::where('status', '=', self::getStatusIdByText($status))->count();
+	}
+
 }

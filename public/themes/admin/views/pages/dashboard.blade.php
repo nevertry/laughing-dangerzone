@@ -9,7 +9,7 @@
                             <div class="small-box bg-aqua">
                                 <div class="inner">
                                     <h3 id="node_riddle_count">
-                                        (counting...)
+                                        <i class="fa fa-spinner fa-spin"></i>
                                     </h3>
                                     <p>
                                         Registered Riddles
@@ -18,7 +18,7 @@
                                 <div class="icon">
                                     <i class="ion ion-bag"></i>
                                 </div>
-                                <a href="{{ route('dashboard.guests') }}" class="small-box-footer">
+                                <a href="{{ route('dashboard.riddles') }}" class="small-box-footer">
                                     More info <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
@@ -28,7 +28,7 @@
                             <div class="small-box bg-yellow">
                                 <div class="inner">
                                     <h3 id="node_guest_count">
-                                        (counting...)
+                                        <i class="fa fa-spinner fa-spin"></i>
                                     </h3>
                                     <p>
                                         Guest Registration
@@ -37,7 +37,7 @@
                                 <div class="icon">
                                     <i class="ion ion-person-add"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">
+                                <a href="{{ route('dashboard.guests') }}" class="small-box-footer">
                                     More info <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
@@ -66,18 +66,14 @@ $(function(){
         $.ajax({
             url: "{{ route('ajax.v1.dashboard.riddle.count') }}"
         })
-        .done(function(result) {
+        .done(function(result){
             if (result.error == 0)
             {
                 element.text(result.data.count);
             }
         })
-        .fail(function(result) {
-            console.log(result);
-        })
-        .always(function(result) {
-            console.log(result);
-        });
+        .fail(function(result){})
+        .always(function(result){});
     }
 
     function getGuestCount()
@@ -86,18 +82,14 @@ $(function(){
         $.ajax({
             url: "{{ route('ajax.v1.dashboard.guest.count') }}"
         })
-        .done(function(result) {
+        .done(function(result){
             if (result.error == 0)
             {
                 element.text(result.data.count);
             }
         })
-        .fail(function(result) {
-            console.log(result);
-        })
-        .always(function(result) {
-            console.log(result);
-        });
+        .fail(function(result){})
+        .always(function(result){});
     }
 
     // get number of riddle
