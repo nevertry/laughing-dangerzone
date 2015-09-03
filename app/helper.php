@@ -331,3 +331,28 @@ function wordSlugger($str, $replace=array(), $delimiter='_') {
 
 	return $clean;
 }
+
+/**
+ * Return values of array from given array collection.
+ *
+ * @param mixed $arrayCollection
+ * @param string $whichKey
+ * @return mixed $returnArrayValues
+ */
+function returnArrayValues($arrayCollection, $whichKey)
+{
+	$returnArrayValues = array();
+
+	foreach ($arrayCollection as $key => $value) {
+		$arrValue = '';
+
+		if ($whichKey == $key)
+		{
+			$arrValue = $value;
+		}
+
+		array_push($returnArrayValues, $arrValue);
+	}
+
+	return $returnArrayValues;
+}

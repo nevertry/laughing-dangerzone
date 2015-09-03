@@ -46,7 +46,7 @@ class CharmapsController extends \BaseController {
 	 **/
 	public function getEdit($letter)
 	{
-		$charmap = $this->getCharmapData($letter);
+		$charmap = Charmap::getCharmapData($letter);
 
 		return View::make('pages.charmaps.edit', [
 			'pageinfo' => self::$pageinfo,
@@ -80,7 +80,7 @@ class CharmapsController extends \BaseController {
 
 		if ($validate->passes())
 		{
-			$charmap = $this->getCharmapData($letter);
+			$charmap = Charmap::getCharmapData($letter);
 
 			if ($charmap)
 			{
@@ -126,28 +126,5 @@ class CharmapsController extends \BaseController {
 		}
 
 		return Redirect::route('dashboard.charmaps.index');
-	}
-
-	/**
-	 * Get Charmap Data by letter
-	 *
-	 * @param string $letter
-	 * @param boolean $redirect Use redirect if error?
-	 */
-	function getCharmapData($letter, $redirect=true)
-	{
-		// try
-		// {
-			$charmap = Charmap::whereLetter($letter)->first();
-		// }
-		// catch (Exception $e)
-		// {
-		// 	if ($redirect)
-		// 		return Redirect::route('dashboard.charmaps.index')->withErrors($e->getMessage());
-		// 	else
-		// 		return false;
-		// }
-
-		return $charmap;
 	}
 }

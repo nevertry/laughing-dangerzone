@@ -170,8 +170,13 @@ Route::group(['prefix' => 'ajax', 'namespace' => 'Ajax\v1', 'before' => 'auth.se
 	* url: /ajax/v1
 	*/
 	Route::group(['prefix' => 'v1'], function() {
+		/*
+		|--------------------------------------------------------------------------
+		| Used mainly in Dashboard
+		|--------------------------------------------------------------------------
+		*/
 		/**
-		* Riddle
+		* Get Riddle Count
 		* url: /ajax/v1/riddle/count
 		*/
 		Route::get('/riddle/count', [
@@ -180,12 +185,27 @@ Route::group(['prefix' => 'ajax', 'namespace' => 'Ajax\v1', 'before' => 'auth.se
 		]);
 
 		/**
-		* Guest
+		* Get Guest Count
 		* url: /ajax/v1/guest/count
 		*/
 		Route::get('/guest/count', [
 			'as' => 'ajax.v1.dashboard.guest.count',
 			'uses' => 'AjaxDashboardController@getGuestCount'
 		]);
+
+		/*
+		|--------------------------------------------------------------------------
+		| Used mainly in Specific Page
+		|--------------------------------------------------------------------------
+		*/
+		/**
+		* Riddles: Get Auto Clues
+		* url: /ajax/v1/riddle/count
+		*/
+		Route::any('/riddle/autoclues', [
+			'as' => 'ajax.v1.dashboard.riddle.autoclues',
+			'uses' => 'AjaxRiddlesController@getAutoClues'
+		]);
+
 	});
 });

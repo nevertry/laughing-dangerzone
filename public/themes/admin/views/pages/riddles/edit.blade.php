@@ -57,6 +57,17 @@
                                             </div>
                                         </div>
 
+                                        <div class="row">
+                                            <div class="form-group col-sm-6">
+                                                {{ Form::label('estimated_clues', "Estimated Clues (bot)") }}
+                                                {{ Form::text('estimated_clues', '', ['class'=>"form-control", 'readonly'=>"readonly", 'tabindex'=>"-1"]) }}
+                                            </div>
+                                            <div class="form-group col-sm-6 col-md-offset-0">
+                                                {{ Form::label('read_as', "Read As") }}
+                                                {{ Form::text('read_as', '', ['class'=>"form-control", 'readonly'=>"readonly", 'tabindex'=>"-1"]) }}
+                                            </div>
+                                        </div>
+
                                     </div><!-- /.box-body -->
 
                                     <div class="box-footer">
@@ -68,4 +79,39 @@
                         </div>
                     </div>
                 </section>
+@stop
+
+@section('footer')
+        <!-- page script -->
+        <script type="text/javascript">
+            $(function(){
+                $(document).on('blur', '#riddle_answer', function(){
+                    getAutoClues();
+                });
+
+                function getAutoClues()
+                {
+                    var readAs = $('#riddle_answer').val();
+                    var postData = {readAs: readAs};
+
+                    $.ajax({
+                        url: "{{ route('ajax.v1.dashboard.riddle.autoclues') }}",
+                        method: "post",
+                        data: postData
+                    })
+                    .done(function(result){
+                        if (result.error == 0)
+                        {
+                            $('#estimated_clues').val($('<textarea/>').html(result.data.result.autoclues_encoded).text());
+                            $('#riddle_clues').val($('<textarea/>').html(result.data.result.autoclues_encoded).text());
+                            $('#read_as').val($('<textarea/>').html(result.data.result.autoclues_plain).text());
+                        }
+                    })
+                    .fail(function(result){})
+                    .always(function(result){});
+                }
+
+                getAutoClues();
+            });
+        </script>
 @stop
