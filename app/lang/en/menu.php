@@ -32,8 +32,8 @@ return array(
 	'guests.index' => 'Guests List',
 
 	# Charmaps
-	'charmaps' => 'Character-Symbol',
-	'charmaps.index' => 'Mapping Index',
+	'charmaps' => 'Character Map',
+	'charmaps.index' => 'Letter Substitution',
 
 	# Settings
 	'settings' => 'Settings',
