@@ -203,7 +203,7 @@ Route::group(['prefix' => 'ajax', 'namespace' => 'Ajax\v1', 'before' => 'auth.se
 		*/
 		/**
 		* Riddles: Get Auto Clues
-		* url: /ajax/v1/riddle/count
+		* url: /ajax/v1/riddle/autoclues
 		*/
 		Route::any('/riddle/autoclues', [
 			'as' => 'ajax.v1.dashboard.riddle.autoclues',
@@ -211,4 +211,30 @@ Route::group(['prefix' => 'ajax', 'namespace' => 'Ajax\v1', 'before' => 'auth.se
 		]);
 
 	});
+
+	/**
+	* Route for AJAX version 1.
+	* url: /ajax/v1
+	*/
+	Route::group(['prefix' => 'v1', 'before' => 'hasAccess:charmaps'], function() {
+
+		/**
+		* Charmap: Regenerate Riddle
+		* url: /ajax/v1/riddle/regenerate
+		*/
+		Route::any('/riddle/regenerate', [
+			'as' => 'ajax.v1.riddle.regenerate',
+			'uses' => 'AjaxRiddlesController@generateClues'
+		]);
+
+		/**
+		* Charmap: Get Riddle Ids
+		* url: /ajax/v1/riddle/getids
+		*/
+		Route::any('/riddle/getids', [
+			'as' => 'ajax.v1.riddle.getids',
+			'uses' => 'AjaxRiddlesController@getIds'
+		]);
+	});
+
 });

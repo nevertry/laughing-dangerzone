@@ -22,12 +22,35 @@ class Charmap extends \Eloquent {
 	}
 
 	/**
+	 * Generate Clues
+	 *
+	 * @param integer riddleId string.
+	 * @return string Automated clues.
+	 */
+	public static function generateClues($riddleId)
+	{
+		try
+		{
+			$riddle = Riddle::findOrFail($riddleId);
+			$riddle->clues = self::getAutoClues($riddle->answer, false, true);
+			$riddle->save();
+		}
+		catch (Exception $e)
+		{
+			$riddle = false;
+		}
+
+		return $riddle;
+	}
+
+
+	/**
 	 * Get Autoclues
 	 *
 	 * @param string Original string.
 	 * @return string Automated clues.
 	 */
-	public static function getAutoClues($string, $asHtml=false)
+	public static function getAutoClues($string, $asHtml=false, $implode=false)
 	{
 		$str_split = str_split($string);
 		$symbolCollections = array();
@@ -48,6 +71,20 @@ class Charmap extends \Eloquent {
 
 				array_push($symbolCollections, $currentSymbol);
 			}
+		}
+
+		if ($implode && ($implode !== true))
+		{
+			$symbolCollections = implode($implode, $symbolCollections);
+		}
+		elseif ($implode === true)
+		{
+			$symbolCollections = implode(',', $symbolCollections);
+		}
+		else
+		{
+			// Stay Still
+			// $symbolCollections = $symbolCollections;
 		}
 
 		return $symbolCollections;
