@@ -34,6 +34,7 @@ return array(
 	# Charmaps
 	'charmaps' => 'Character Map',
 	'charmaps.index' => 'Letter Substitution',
+	'charmaps.regenerate' => 'Regenerate Riddle\'s Clues',
 
 	# Settings
 	'settings' => 'Settings',

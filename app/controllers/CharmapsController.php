@@ -127,4 +127,17 @@ class CharmapsController extends \BaseController {
 
 		return Redirect::route('dashboard.charmaps.index');
 	}
+
+	/**
+	 * Show Regenerate Clues Page
+	 */
+	public function getRegenerate()
+	{
+		self::$pageinfo['menu'] = add_to_array(['charmaps.regenerate'], self::$pageinfo['menu']);
+
+		return View::make('pages.charmaps.regenerate.index', [
+			'pageinfo' => self::$pageinfo,
+			'content' => 'This is Charmaps regenerate page.'
+		]);
+	}
 }

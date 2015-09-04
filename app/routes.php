@@ -82,6 +82,9 @@ Route::group(['prefix' => 'dashboard', 'before' => 'theme.backend|auth.sentry|ha
 		// Charmap Edit
 		Route::get('{letter?}/edit', ['as' => 'dashboard.charmaps.edit', 'uses' => 'CharmapsController@getEdit']);
 		Route::post('{letter?}/edit', ['as' => 'dashboard.charmaps.edit', 'uses' => 'CharmapsController@postEdit']);
+
+		// Charmap Regenerate
+		Route::get('regenerate', ['as' => 'dashboard.charmaps.regenerate', 'uses' => 'CharmapsController@getRegenerate']);
 	});
 
 	# Settings

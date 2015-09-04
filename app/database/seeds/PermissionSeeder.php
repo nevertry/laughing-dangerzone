@@ -42,6 +42,7 @@ class PermissionSeeder extends Seeder {
 			'charmaps' => [
 				'charmaps',
 				'charmaps.index',
+				'charmaps.regenerate',
 				],
 
 			// Guest

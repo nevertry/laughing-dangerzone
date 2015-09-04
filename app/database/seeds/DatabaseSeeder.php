@@ -15,7 +15,12 @@ class DatabaseSeeder extends Seeder {
 		// $this->call('UserAncestorSeeder');
 		// $this->call('SettingSeeder');
 		// $this->call('RiddleSeeder');
-		$this->call('CharmapSeeder');
+		// $this->call('CharmapSeeder');
+
+		# New menu Regenerate Riddle's Clues
+		# Notes: Please logout then login again to apply new permission to user permission
+		$this->call('PermissionSeeder');
+		$this->call('UserAncestorSeeder');
 	}
 
 }

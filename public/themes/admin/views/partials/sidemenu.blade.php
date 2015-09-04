@@ -76,6 +76,9 @@
             @if (has_permission('charmaps.index'))
             <li class="{{ setActiveMenuClass('charmaps.index', $pageinfo['menu']) }}"><a href="{{ route('dashboard.charmaps.index') }}"><i class="fa fa-angle-double-right"></i> <span>{{ Lang::get('menu.charmaps.index')}}</span></a></li>
             @endif
+            @if (has_permission('charmaps.regenerate'))
+            <li class="{{ setActiveMenuClass('charmaps.regenerate', $pageinfo['menu']) }}"><a href="{{ route('dashboard.charmaps.regenerate') }}"><i class="fa fa-angle-double-right"></i> <span>{{ Lang::get('menu.charmaps.regenerate')}}</span></a></li>
+            @endif
         </ul>
     </li>
     @endif
