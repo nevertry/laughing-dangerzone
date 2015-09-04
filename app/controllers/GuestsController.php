@@ -2,8 +2,6 @@
 
 class GuestsController extends \BaseController {
 
-	private static $pageinfo;
-
 	/**
 	 * Contstuct
 	 *

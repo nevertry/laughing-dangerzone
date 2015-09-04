@@ -2,8 +2,6 @@
 
 class AnalyticsController extends \BaseController {
 
-	private static $pageinfo;
-
 	/**
 	 * Construct
 	 *

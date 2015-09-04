@@ -2,8 +2,6 @@
 
 class CharmapsController extends \BaseController {
 
-	private static $pageinfo;
-
 	/**
 	 * Contstuct
 	 *

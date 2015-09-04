@@ -2,8 +2,6 @@
 
 class RiddlesController extends \BaseController {
 
-	private static $pageinfo;
-
 	/**
 	 * Contstuct
 	 *

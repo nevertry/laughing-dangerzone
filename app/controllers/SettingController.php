@@ -2,8 +2,6 @@
 
 class SettingController extends \BaseController {
 
-	private static $pageinfo;
-
 	private static $settingAppPrefix = 'xkerangka.setting';
 	private static $settingApp = '_app';
 	/**

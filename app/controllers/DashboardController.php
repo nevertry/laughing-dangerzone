@@ -2,8 +2,6 @@
 
 class DashboardController extends \BaseController {
 
-	private static $pageinfo = ['menu' => ['dashboard']];
-
 	/**
 	 * undocumented function
 	 *
@@ -12,7 +10,7 @@ class DashboardController extends \BaseController {
 	 **/
 	public function __construct ()
 	{
-		// self::$pageinfo = ['menu'=>['dashboard']];
+		self::$pageinfo = ['menu'=>['dashboard']];
 	}
 
 	/**

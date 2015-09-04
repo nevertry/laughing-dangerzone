@@ -2,6 +2,8 @@
 
 class BaseController extends Controller {
 
+	public static $pageinfo;
+
 	/**
 	 * Setup the layout used by the controller.
 	 *
@@ -13,6 +15,11 @@ class BaseController extends Controller {
 		{
 			$this->layout = View::make($this->layout);
 		}
+	}
+
+	private static function addMenu($arrayOfMenu)
+	{
+		self::$pageinfo['menu'] = add_to_array($arrayOfMenu, self::$pageinfo['menu']);
 	}
 
 }
