@@ -29,6 +29,9 @@ class GuestsController extends \BaseController {
 	 **/
 	public function showIndex()
 	{
+		# Set Menu Permission
+		self::addMenu(['guests.index']);
+
 		$data_guests = Guest::all();
 
 		return View::make('pages.guests.index', [
@@ -46,6 +49,9 @@ class GuestsController extends \BaseController {
 	 **/
 	public function getEdit($id)
 	{
+		# Set Menu Permission
+		// self::addMenu(['guests.edit']); // unavailable
+
 		try
 		{
 			$guest_data = Guest::findOrFail($id);
@@ -146,6 +152,9 @@ class GuestsController extends \BaseController {
 	 */
 	public function getDelete($id)
 	{
+		# Set Menu Permission
+		// self::addMenu(['guests.delete']); // unavailable
+
 		if (!empty($id))
 		{
 			// Do Delete

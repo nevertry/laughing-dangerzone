@@ -28,6 +28,9 @@ class RiddlesController extends \BaseController {
 	 **/
 	public function getIndex()
 	{
+		# Set Menu Permission
+		self::addMenu(['riddles.index']);
+
 		return View::make('pages.riddles.index', [
 			'pageinfo' => self::$pageinfo,
 			'content' => 'This is Riddles index page.',
@@ -43,6 +46,9 @@ class RiddlesController extends \BaseController {
 	 **/
 	public function getCreate()
 	{
+		# Set Menu Permission
+		self::addMenu(['settings.create']);
+
 		return View::make('pages.riddles.create', [
 			'pageinfo' => self::$pageinfo,
 			'riddle_data' => Input::old(),
@@ -88,6 +94,9 @@ class RiddlesController extends \BaseController {
 	 **/
 	public function getEdit($id)
 	{
+		# Set Menu Permission
+		// self::addMenu(['settings.edit']); // unavailable
+
 		try
 		{
 			$riddle_data = Riddle::findOrFail($id);
@@ -166,6 +175,9 @@ class RiddlesController extends \BaseController {
 	 **/
 	public function getDelete($id)
 	{
+		# Set Menu Permission
+		// self::addMenu(['riddles.delete']); // unavailable
+
 		if (!empty($id))
 		{
 			// Do Delete

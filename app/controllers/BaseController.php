@@ -17,7 +17,7 @@ class BaseController extends Controller {
 		}
 	}
 
-	private static function addMenu($arrayOfMenu)
+	public static function addMenu($arrayOfMenu)
 	{
 		self::$pageinfo['menu'] = add_to_array($arrayOfMenu, self::$pageinfo['menu']);
 	}

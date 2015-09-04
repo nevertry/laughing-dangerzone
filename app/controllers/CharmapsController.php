@@ -28,6 +28,9 @@ class CharmapsController extends \BaseController {
 	 **/
 	public function showIndex()
 	{
+		# Set Menu Permission
+		self::addMenu(['charmaps.index']);
+
 		$charmaps = Charmap::all();
 
 		return View::make('pages.charmaps.index', [
@@ -44,6 +47,9 @@ class CharmapsController extends \BaseController {
 	 **/
 	public function getEdit($letter)
 	{
+		# Set Menu Permission
+		// self::addMenu(['charmaps.edit']); // unavailable
+
 		$charmap = Charmap::getCharmapData($letter);
 
 		return View::make('pages.charmaps.edit', [
@@ -131,7 +137,8 @@ class CharmapsController extends \BaseController {
 	 */
 	public function getRegenerate()
 	{
-		self::$pageinfo['menu'] = add_to_array(['charmaps.regenerate'], self::$pageinfo['menu']);
+		# Set Menu Permission
+		self::addMenu(['charmaps.regenerate']);
 
 		return View::make('pages.charmaps.regenerate.index', [
 			'pageinfo' => self::$pageinfo,

@@ -26,7 +26,7 @@ class SettingController extends \BaseController {
 	public function getIndex()
 	{
 		# Set Menu Permission
-		self::$pageinfo['menu'] = add_to_array(['settings.app'], self::$pageinfo['menu']);
+		self::addMenu(['settings.index']);
 
 		# Get setting meta_data, this is to determine <form> field in view.
 		$setting_name = self::$settingApp;

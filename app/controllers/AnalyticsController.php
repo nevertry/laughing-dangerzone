@@ -29,6 +29,9 @@ class AnalyticsController extends \BaseController {
 	 **/
 	public function showIndex()
 	{
+		# Set Menu Permission
+		self::addMenu(['analytics.index']);
+
 		return View::make('pages.empty', [
 			'pageinfo' => self::$pageinfo,
 			'content' => 'This is Analytics index page.'
