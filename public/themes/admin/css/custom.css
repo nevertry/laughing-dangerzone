@@ -316,3 +316,22 @@ span.item-level-1 {
 span.item-level-2 {
   padding-left: 40px;
 }
+
+/* Group: Form */
+label.form-item-floating-text {
+  position: absolute;
+  right: 0;
+  padding: 0 14px;
+}
+
+span#autoclue_spinner, span#autoread_spinner {
+  position: absolute;
+  right: 20px;
+  top: 34px;
+}
+
+span#autoclue_copy {
+  position: absolute;
+  right: 17px;
+  top: 27px;
+}
