@@ -84,7 +84,7 @@
                     $('#autoread_spinner').show();
                     if (newValue.length == 0)
                     {
-                        $('#read_as').val($('#riddle_clues').val());
+                        $('#read_as').val(converter.html($('#riddle_clues').val()).text());
                     }
                     else
                     {
