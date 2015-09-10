@@ -159,10 +159,16 @@
                 });
             }
 
+            function timeAddZero(i)
+            {
+                if (i < 10) i = "0" + i;
+                return i;
+            }
+
             function generateLog(riddleData)
             {
                 var d = new Date();
-                var time = d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+                var time = timeAddZero(d.getHours()) + ':' + timeAddZero(d.getMinutes()) + ':' + timeAddZero(d.getSeconds());
                 var htmlResult = '';
 
                 if (riddleData.error == 0)
@@ -170,7 +176,7 @@
                     $('#regen-log-success-count').text(parseInt($('#regen-log-success-count').text())+1);
                     htmlResult =
                         '<li>'+
-                            '<i class="fa fa-repeat bg-blue"></i>'+
+                            '<i class="fa fa-check bg-green"></i>'+
                             '<div class="timeline-item">'+
                                 '<span class="time"><i class="fa fa-clock-o"></i> '+time+'</span>'+
                                 '<h3 class="timeline-header"><a href="#">Riddle #'+riddleData.data.id+' clue has regenerated.</a></h3>'+
@@ -185,7 +191,7 @@
                     $('#regen-log-fail-count').text(parseInt($('#regen-log-fail-count').text())+1);
                     htmlResult =
                         '<li>'+
-                            '<i class="fa fa-repeat bg-blue"></i>'+
+                            '<i class="fa fa-times bg-red"></i>'+
                             '<div class="timeline-item">'+
                                 '<span class="time"><i class="fa fa-clock-o"></i> '+time+'</span>'+
                                 '<h3 class="timeline-header"><a href="#">Riddle #'+riddleData.data.id+' clue has failed to regenerate.</a></h3>'+
@@ -208,9 +214,19 @@
 
             function updateProgressBar(progress)
             {
-                $('#regen-progress-bar').attr('aria-valuenow', progress.valuenow);
-                $('#regen-progress-bar').css('width', progress.valuenow+progressDefault.width);
-                $('#regen-progress-text').text(progress.valuenow+progressDefault.text);
+                var value = progress.valuenow;
+
+                if (value >= 100) {
+                    value = 100;
+                }
+                else
+                {
+                    value = Math.floor(value);
+                }
+
+                $('#regen-progress-bar').attr('aria-valuenow', value);
+                $('#regen-progress-bar').css('width', value+progressDefault.width);
+                $('#regen-progress-text').text(value+progressDefault.text);
             }
 
             function resetProgressBar(progress, counter)
