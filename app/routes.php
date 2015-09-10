@@ -69,6 +69,14 @@ Route::group(['prefix' => 'dashboard', 'before' => 'theme.backend|auth.sentry|ha
 
 		// Guest Delete
 		Route::post('{id?}/delete', ['as' => 'dashboard.guests.delete', 'uses' => 'GuestsController@getDelete']);
+
+		// Guest Riddles Answers
+		Route::group(['prefix' => 'answers', 'before' => 'hasAccess:guests.answers'], function() {
+			Route::get('/', ['as'=>'dashboard.guests.answers', 'uses' => function() {
+				return Redirect::route('dashboard.guests.answers.index');
+			}]);
+			Route::get('index', ['as' => 'dashboard.guests.answers.index', 'uses' => 'GuestsController@showAnswers']);
+		});
 	});
 
 	# Charmaps : Letter-Symbol Mapping

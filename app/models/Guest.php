@@ -15,7 +15,8 @@ class Guest extends \Eloquent {
 	];
 
 	protected static $allowed_status = [
-		0 => "Registered Guest",
+		0 => "Registered Guest.",
+		1 => "Registered Guest, gave correct answer.",
 	];
 
 	protected $hidden = ['id', 'riddle_id', 'created_at', 'updated_at', 'status'];

@@ -174,4 +174,14 @@ class GuestsController extends \BaseController {
 
 		return Redirect::route('dashboard.guests.index');
 	}
+
+	public function showAnswers()
+	{
+		$riddlesAnswers = \RiddlesAnswer::all();
+
+		return View::make('pages.guests.answers.index', [
+			'pageinfo' => self::$pageinfo,
+			'data_answers' => $riddlesAnswers
+		]);
+	}
 }

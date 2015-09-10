@@ -46,6 +46,7 @@ class ApiRiddleController extends BaseApiController
 					$riddle = \Riddle::whereId($guest->riddle_id)->first();
 					if ($riddle)
 					{
+						$answer_status = 0;
 						// // IF equal, get Riddle with answer
 						// // // IF riddle_answer = given_answer
 						// // // // Success!
@@ -54,6 +55,12 @@ class ApiRiddleController extends BaseApiController
 							self::$message = trans('codeapi.riddle.answer.correct');
 							$inputData['status'] = self::$statuses['riddle_solved'];
 							self::$data    = $inputData;
+
+							$answer_status = 1; // Status 1 = correct
+
+							// Guest update
+							$guest->status = $answer_status;
+							$guest->save();
 						}
 						else
 						{
@@ -61,7 +68,17 @@ class ApiRiddleController extends BaseApiController
 							self::$message = trans('codeapi.riddle.answer.wrong');
 							$inputData['status'] = self::$statuses['riddle_not_solved'];
 							self::$data    = $inputData;
+
+							$answer_status = 0; // Status 0 = incorrect
 						}
+
+						// PREPARE + DO: Save to Riddles Answers table.
+						$answer = \RiddlesAnswer::create([
+							'guest_id'  => $guest->id,
+							'riddle_id' => $riddle->id,
+							'answer'    => $inputData['answer'],
+							'status'    => $answer_status,
+							]);
 					}
 					else
 					{

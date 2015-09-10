@@ -60,6 +60,9 @@
             @if (has_permission('guests.index'))
             <li class="{{ setActiveMenuClass('guests.index', $pageinfo['menu']) }}"><a href="{{ route('dashboard.guests.index') }}"><i class="fa fa-angle-double-right"></i> <span>{{ Lang::get('menu.guests.index')}}</span></a></li>
             @endif
+            @if (has_permission('guests.answers'))
+            <li class="{{ setActiveMenuClass('guests.answers', $pageinfo['menu']) }}"><a href="{{ route('dashboard.guests.answers') }}"><i class="fa fa-angle-double-right"></i> <span>{{ Lang::get('menu.guests.answers')}}</span></a></li>
+            @endif
         </ul>
     </li>
     @endif

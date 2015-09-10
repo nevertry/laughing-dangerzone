@@ -30,6 +30,7 @@ return array(
 	# Guests
 	'guests' => 'Guest',
 	'guests.index' => 'Guests List',
+	'guests.answers' => 'Guest\'s Answer',
 
 	# Charmaps
 	'charmaps' => 'Character Map',

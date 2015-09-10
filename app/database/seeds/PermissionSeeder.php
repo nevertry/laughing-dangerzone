@@ -36,6 +36,7 @@ class PermissionSeeder extends Seeder {
 			'guests' => [
 				'guests',
 				'guests.index',
+				'guests.answers',
 				],
 
 			// Character Mapping
